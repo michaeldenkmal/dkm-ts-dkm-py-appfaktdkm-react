@@ -1,0 +1,25 @@
+@import "tailwindcss";
+/* https://chatgpt.com/c/6819e277-b540-8002-adc6-8d7bf01fd328 */
+
+
+@layer components {
+    .modal-wrapper {
+        @apply fixed inset-0 bg-black/40 flex items-center justify-center z-50;
+    }
+    .modal-root {
+        @apply flex flex-col bg-white w-[500px] max-w-[95vw] h-[80vh] max-h-[90vh] rounded-lg shadow-lg overflow-hidden;
+    }
+
+    .modal-header {
+        @apply h-16 px-4 py-3 bg-gray-800 text-white flex items-center justify-between flex-shrink-0;
+    }
+
+    .modal-body {
+        @apply flex-1 overflow-y-auto px-4 py-3 bg-gray-50
+    }
+
+    .modal-footer {
+        @apply h-14 px-4 py-2 bg-gray-200 flex items-center justify-end space-x-2 flex-shrink-0 z-110;
+    }
+
+}

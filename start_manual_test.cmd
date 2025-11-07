@@ -1,0 +1,1 @@
+vite --config vitest.config.test.ts
