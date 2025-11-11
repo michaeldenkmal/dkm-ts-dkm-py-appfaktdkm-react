@@ -3,6 +3,7 @@ import {dateToDkmDateStr, dkmDateJson2Date} from "@at.dkm/dkm-ts-lib-gen/lib/dat
 import Decimal from "decimal.js";
 import {dkmDecimalToJson, dkmJsonToDecimal} from "./dkm_dj_json_util.ts";
 import {dispatchErrorEvt} from "../dkm_comps/global_event_util.ts";
+import {HtmlError} from "../dkm_comps/err_handling.tsx";
 
 const CSRF_TOKEN = "csrftoken"
 
@@ -92,16 +93,16 @@ function stringifyReplacer(_key: any, value: any): any {
 }
 */
 
-const date_prototype_toJSON = function(this:Date,_key?: any) {
+const date_prototype_toJSON = function (this: Date, _key?: any) {
     return dateToDkmDateStr(this);
 };
 
-const decimal_prototype_toJSON = function(this:Decimal,_key?: any) {
+const decimal_prototype_toJSON = function (this: Decimal, _key?: any) {
     return dkmDecimalToJson(this);
 }
 
 
-export function obj2DkmDateDec(data:any) :string {
+export function obj2DkmDateDec(data: any): string {
     let storeToJSONDate;
     let storeToJSONDecimal;
     try {
@@ -111,13 +112,11 @@ export function obj2DkmDateDec(data:any) :string {
         storeToJSONDecimal = Decimal.prototype.toJSON;
         //delete (Decimal as any).prototype.toJSON;
         Decimal.prototype.toJSON = decimal_prototype_toJSON;
-        return JSON.stringify(data,null, 4);
-    }
-    catch (e) {
-        dispatchErrorEvt({msg: `${e}` });
+        return JSON.stringify(data, null, 4);
+    } catch (e) {
+        dispatchErrorEvt({msg: `${e}`});
         throw e;
-    }
-    finally {
+    } finally {
         Date.prototype.toJSON = storeToJSONDate;
         Decimal.prototype.toJSON = storeToJSONDecimal;
     }
@@ -141,21 +140,26 @@ export async function execDjPost<T>(url: string, data: any): Promise<T> {
         });
         if (!res.ok) {
             const resText = await res.text();
-            dispatchErrorEvt({msg: resText})
-            throw Error(errmsginfo);
+            console.error("err1:" +  errmsginfo);
+            throw new HtmlError(`post:url=${url}, data:=${JSON.stringify(data)}`, resText);
         }
         const resText = await res.text();
         return djParseJson(resText);
 
     } catch (e) {
-        throw new Error((e as any ).toString()+ ' bei ' + errmsginfo);
+        if (e instanceof HtmlError) {
+            throw e
+        } else {
+            const errmsg = errmsginfo + `${e}`
+            throw Error("err2:" + errmsg);
+        }
     }
 }
 
-function djParseJson(jsonstr:string):any {
+function djParseJson(jsonstr: string): any {
     return JSON.parse(jsonstr, (_key, value: any): any => {
         // wandelt ISO-Datumsstrings in Date um
-        if (typeof value=="string") {
+        if (typeof value == "string") {
             const szv = value.toString()
             if (szv.startsWith(":d~")) {
                 // TODO
@@ -168,17 +172,31 @@ function djParseJson(jsonstr:string):any {
         return value;
     });
 }
+
 export async function execDjGet<T>(url: string): Promise<T> {
-    const res = await fetch(url, {
-        method: "GET",
-        credentials: "include",
-        headers: {
-            "Content-Type": "application/json",
+    const errmsginfo = `url=${url}`;
+    try {
+        const res = await fetch(url, {
+            method: "GET",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        });
+        if (!res.ok) {
+            const resText = await res.text();
+            console.error("err1:" +  errmsginfo);
+            throw new HtmlError(`post:url=${url}`, resText);
+        } else {
+            const resText = await res.text();
+            return djParseJson(resText);
         }
-    });
-    const resText = await res.text();
-    if (res.status==500) {
-        document.documentElement.innerHTML = resText;
+    } catch (e) {
+        if (e instanceof HtmlError) {
+            throw e
+        } else {
+            const errmsg = errmsginfo + `${e}`
+            throw Error("err2:" + errmsg);
+        }
     }
-    return djParseJson(resText);
 }

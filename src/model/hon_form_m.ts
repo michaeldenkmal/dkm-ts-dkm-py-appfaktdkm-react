@@ -1,5 +1,7 @@
 import type {Float, MayBeBool, MayBeFloat, MayBeString} from "../dkm_django/dkm_django_m.ts";
 
+
+
 export interface HonorarRow {
     nr:number;
     anwen:string;
@@ -21,5 +23,7 @@ export interface WorkRepRow {
 export interface HonGuiData{
     hon_row: HonorarRow
     work_rep_rows:Array<WorkRepRow>
+    hon_row_changed?:boolean
+    work_rep_rows_changed?:Array<Float>
 }
 

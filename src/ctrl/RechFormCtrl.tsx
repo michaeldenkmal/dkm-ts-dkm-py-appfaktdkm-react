@@ -33,16 +33,16 @@ function RechFormCtrl(props: Props) {
             });
     });
 
-    async function wsGet() {
-        try {
-            const guidata = await rech_form_ws.rech_form_get_by_vnr(props.vnr);
-            s_setRechGuiData(guidata);
-        } catch (e) {
-            throw Error((e as any).toString())
-        }
-    }
 
     useEffect(() => {
+        async function wsGet() {
+            try {
+                const guidata = await rech_form_ws.rech_form_get_by_vnr(props.vnr);
+                s_setRechGuiData(guidata);
+            } catch (e) {
+                throw Error((e as any).toString())
+            }
+        }
         if(props.vnr ?? props.vnr!=0) {
             wsGet()
         }

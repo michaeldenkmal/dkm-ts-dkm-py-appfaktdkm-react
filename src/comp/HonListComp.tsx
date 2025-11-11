@@ -79,10 +79,10 @@ function HonListCompTable(props: HonListCompTableProps) {
                 {fmtGermanNum(row.gesamtpreis ||0 )}
             </DkmRespTableCell>
             <DkmRespTableCell label={"abgerechnet"} tdClass={"text-center"}>
-                {row.ist_verrechnet}
+                {row.ist_verrechnet==true?"ja":"nein"}
             </DkmRespTableCell>
             <DkmRespTableCell label={"weggeschickt"} tdClass={"text-center"}>
-                {row.ist_weggeschickt}
+                {row.ist_weggeschickt==true?"ja":"nein"}
             </DkmRespTableCell>
         </DkmRespTableRow>
     }

@@ -9,6 +9,7 @@ import BaseMenuBar from "../layout/BaseMenuBar.tsx";
 import {MITM_HON_ABRECH, MITM_RECH_LIST} from "../layout/dkm_fakt_menu.ts";
 import BaseLayout from "../layout/BaseLayout.tsx";
 import HonListComp from "../comp/HonListComp.tsx";
+import {showMayBeHtmlError} from "../dkm_comps/err_handling.tsx";
 
 interface Props {
     searchKey?:string
@@ -31,11 +32,6 @@ export default function HonListCtrl(props: Props) {
             s_setSearchData(state.searchData)
         }
     })
-    function showError(e:unknown) {
-        const msg =`${e}`;
-        console.error(msg);
-        toastCenter.showError(msg);
-    }
 
     function handleHonListSearch(searchData: HonListSearchData) {
         s_setSearchData(searchData);
@@ -51,7 +47,7 @@ export default function HonListCtrl(props: Props) {
                 navigate(DkmFaktRouterConsts.getHonListSearchUrl(newSearchKey));
             })
             .catch(err => {
-                showError(err);
+                showMayBeHtmlError(toastCenter,err);
             })
     }
 

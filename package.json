@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "manual_test": "vite --config vite.confg.test.ts",
+    "test": "vitest",
+    "manual_test": "vite --config vitest.config.ts",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
@@ -16,9 +17,12 @@
     "@heroicons/react": "^2.2.0",
     "@tailwindcss/vite": "^4.1.16",
     "decimal.js": "^10.6.0",
+    "fast-deep-equal": "3",
+    "immer": "^10.2.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "tailwindcss": "^4.1.16",
+    "use-immer": "^0.11.0",
     "wouter": "^3.7.1"
   },
   "devDependencies": {

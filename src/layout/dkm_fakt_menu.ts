@@ -22,10 +22,14 @@ export const MITM_RECH_NEW : BaseMenuItem = {
 }
 
 export const MITM_RECH_FORM : BaseMenuItem = {
-    label: "Rechnungsliste",
+    label: "Rechnungsbearbeitung",
     path: "/rech_list/start"
 }
 
+export const MITM_HON_FORM : BaseMenuItem = {
+    label: "Honorar-Bearbeitung",
+    path: "/hon_form/start"
+}
 // Kundenhonorar
 // Honorarabrechnung
 // Honorarliste

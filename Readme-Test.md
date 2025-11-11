@@ -57,7 +57,7 @@ Vite tests sind syntaxkompatibel zu Jest
 ```json
 "scripts": {
    ...
-    "manual_test": "vite --config vite.confg.test.ts",
+    "manual_test": "vite --config vitest.config.ts",
 ...
   },
 ```

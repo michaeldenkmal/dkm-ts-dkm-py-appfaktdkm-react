@@ -16,7 +16,7 @@ export type ToastItem = {
 };
 
 export type ToastCenterContextType = {
-  showError: (msg: string, timeoutMs?: number) => void;
+  showError: (msg: string, html:string,timeoutMs?: number) => void;
   showSuccess: (msg: string, timeoutMs?: number) => void;
   showInfo: (msg: string, timeoutMs?: number) => void;
   clearToast: (id: number) => void;
@@ -34,6 +34,7 @@ let nextId = 1;
 export function ToastCenterProvider(props: { children: React.ReactNode }) {
   const { children } = props;
   const [toasts, setToasts] = useState<ToastItem[]>([]);
+  const [s_html, s_setHtml] = useState<string>("");
 
   function pushToast(kind: ToastKind, message: string, timeoutMs?: number) {
     const id = nextId++;
@@ -43,9 +44,10 @@ export function ToastCenterProvider(props: { children: React.ReactNode }) {
     });
   }
 
-  const showError = useCallback(function (msg: string, timeoutMs?: number) {
+  const showError = useCallback(function (msg: string,html:string, timeoutMs?: number) {
     // Default bei Fehler: bleibt länger stehen
-    pushToast("error", msg, timeoutMs ?? 8000);
+      s_setHtml(html);
+      pushToast("error", msg, timeoutMs ?? 8000);
   }, []);
 
   const showSuccess = useCallback(function (msg: string, timeoutMs?: number) {
@@ -111,8 +113,10 @@ export function ToastCenterProvider(props: { children: React.ReactNode }) {
                 kind={toast.kind}
                 message={toast.message}
                 onClose={function () {
-                  clearToast(toast.id);
+                    s_setHtml("");
+                    clearToast(toast.id);
                 }}
+                html={s_html}
               />
             </div>
           );
@@ -128,3 +132,4 @@ export function ToastCenterProvider(props: { children: React.ReactNode }) {
 export function useToastCenter(): ToastCenterContextType {
   return useContext(ToastCenterContext);
 }
+

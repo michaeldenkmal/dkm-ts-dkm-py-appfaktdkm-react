@@ -120,7 +120,7 @@ export function _handlActPos(guiData: RechGuiData, act: ActPos): RechGuiData {
 }
 
 export function _handleActSetDataDirect(act: ActSetDataDirect): RechGuiData {
-    return act.guiData;
+    return {...act.guiData};
 }
 
 export function _handleActAddPosRow(guiData: RechGuiData): RechGuiData {

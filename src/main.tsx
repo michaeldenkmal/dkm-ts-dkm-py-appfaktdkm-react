@@ -3,7 +3,7 @@ import {createRoot} from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 import {ToastCenterProvider} from "./dkm_comps/ToastCenterContext.tsx";
-// @ts-ignore
+
 import {initIDbConf} from "@at.dkm/dkm-ts-lib-websrvc/lib/IDbConf";
 import {ensureCsrfToken} from "./dkm_django/dkm_django_ws.ts";
 import {dispatchErrorEvt} from "./dkm_comps/global_event_util.ts";

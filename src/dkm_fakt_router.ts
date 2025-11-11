@@ -5,7 +5,7 @@ export const DkmFaktRouterConsts = {
         return `/rech_form/${vnr.toString()}/${uq_search_key}`
     },
     getHonFormUrl(hon_float_nr: Float, uq_search_key:string): string {
-        return `/rech_form/${hon_float_nr}/${uq_search_key}`
+        return `/hon_form/${hon_float_nr}/${uq_search_key}`
     },
     getNewRechUrl():string {
         return `/rech_form/0/new`

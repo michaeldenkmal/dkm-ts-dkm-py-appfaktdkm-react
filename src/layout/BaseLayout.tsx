@@ -1,8 +1,6 @@
 // src/layouts/AppShell.tsx
 import type {ReactNode} from "react";
-import HtmlViewer from "../dkm_comps/HtmlViewerComp.tsx";
-import {useGlobalEvent} from "../dkm_comps/useGlobalEvent.tsx";
-import {DKM_ERROR_EVENT} from "../dkm_comps/global_event_util.ts";
+import {Link} from "wouter";
 
 
 type Props = {
@@ -14,7 +12,6 @@ type Props = {
 export default function BaseLayout(props:Props) {
 
 
-    const globalDkmErrorData = useGlobalEvent(DKM_ERROR_EVENT);
 
     function renderSideBar() {
         if (props.sidebar) {
@@ -27,12 +24,6 @@ export default function BaseLayout(props:Props) {
         return null;
     }
 
-    function renderHtmlViewer() {
-        if (!globalDkmErrorData) {
-            return null;
-        }
-        return <HtmlViewer html={globalDkmErrorData.msg}/>
-    }
 
     return (
         <>
@@ -42,9 +33,8 @@ export default function BaseLayout(props:Props) {
             {renderSideBar()}
         <div id={"content"}>
             <div className="min-h-screen grid grid-rows-[auto_1fr_auto]">
-                <header className="border-b p-4">Dkm Fakturierung</header>
+                <header className="border-b p-4"><Link  className={"underline"} to={"/"}>Dkm-Fakturierung -  Home</Link></header>
                 <main className="p-1">{props.children}</main>
-                {renderHtmlViewer()}
                 <footer className="border-t p-1 text-sm">© {new Date().getFullYear()}</footer>
             </div>
 

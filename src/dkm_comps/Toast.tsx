@@ -1,8 +1,11 @@
+import HtmlViewer from "./HtmlViewerComp.tsx";
+
 export type ToastKind = "error" | "success" | "info";
 
 export type ToastProps = {
   kind: ToastKind;
   message: string;
+  html?:string;
   onClose?: () => void;
 };
 
@@ -35,24 +38,29 @@ export default function Toast(props: ToastProps) {
   const { kind, message, onClose } = props;
   const styles = kindStyles(kind);
 
+  function renderHtmlViewer() {
+      if (props.html) {
+          return <HtmlViewer html={props.html}/>
+      }
+  }
   return (
     <div
       className={
-        "flex w-full items-start gap-3 rounded-md border px-4 py-3 text-sm shadow-sm " +
+        "flex w-full items-start gap-1 rounded-md border px-1 py-1 text-sm shadow-sm overflow-hidden" +
         styles.outer
       }
       role="alert"
     >
       {/* Icon / Label */}
-      <div className={"font-bold text-xs leading-5 " + styles.icon}>
+      <div className={"font-bold text-xs leading-5 overflow-hidden" + styles.icon}>
         {styles.label}
       </div>
 
       {/* Text */}
-      <div className="flex-1 text-sm">
-        {message}
+      <div className="flex-1 text-sm overflow-hidden py-3">
+            {message}
+          {renderHtmlViewer()}
       </div>
-
       {/* Close button */}
       {onClose && (
         <button

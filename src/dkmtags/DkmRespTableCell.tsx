@@ -3,6 +3,7 @@ interface Props {
     label:string
     tdClass?:string
     valueClass?:string
+    colSpan?:number
 }
 
 function DkmRespTableCell(props: Props) {
@@ -14,8 +15,12 @@ function DkmRespTableCell(props: Props) {
     if (props.valueClass) {
         myValueClass += " " + props.valueClass;
     }
+    const additonalProps:Record<string, any>={};
+    if (props.colSpan) {
+        additonalProps["colSpan"] = props.colSpan;
+    }
     return (
-        <td className={myTdClass}>
+        <td className={myTdClass} {...additonalProps}>
             <div className="table-cell-inner">
                 <span className="table-cell-label">{props.label}</span>
                 <span className={myValueClass}>{props.children}</span>

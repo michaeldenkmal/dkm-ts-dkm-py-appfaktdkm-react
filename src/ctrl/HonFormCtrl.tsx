@@ -1,16 +1,15 @@
 import {useEffect,  useState} from "react";
-import {createNewRechGuiData, type RechFormRowErrs, type RechGuiData} from "../model/rech_form_m.ts";
-import * as rech_form_ws from "../ws/rech_form_ws.ts";
-import RechFormComp from "../comp/RechFormComp.tsx";
-import type {OptionItem} from "../dkm_comps/DkmNativeSelect.tsx";
-import {useDkmFaktCache} from "../store/useDkmFaktCache.tsx";
+import * as hon_form_ws from "../ws/hon_form_ws.ts";
 
 import BaseLayout from "../layout/BaseLayout.tsx";
 import BaseMenuBar, {type BaseMenuItem} from "../layout/BaseMenuBar.tsx";
-import {MITM_RECH_FORM} from "../layout/dkm_fakt_menu.ts";
+import {MITM_HON_LIST} from "../layout/dkm_fakt_menu.ts";
 import {DkmFaktRouterConsts} from "../dkm_fakt_router.ts";
-import {useLocation} from "wouter";
 import type {HonGuiData} from "../model/hon_form_m.ts";
+import {useToastCenter} from "../dkm_comps/ToastCenterContext.tsx";
+import HonFormComp from "../comp/HonFormComp.tsx";
+import type {Float} from "../dkm_django/dkm_django_m.ts";
+import {showMayBeHtmlError} from "../dkm_comps/err_handling.tsx";
 
 
 interface Props {
@@ -21,71 +20,76 @@ interface Props {
 
 function HonFormCtrl(props: Props) {
 
-    const [s_rechGuiData, s_setRechGuiData] = useState<HonGuiData>();
-    const [, navigate] = useLocation();
+    const [s_guiData, s_setGuiData] = useState<HonGuiData>();
+    const toastCenter = useToastCenter();
 
-    async function wsGet() {
-        try {
-            const guidata = await rech_form_ws.rech_form_get_by_vnr(props.vnr);
-            s_setRechGuiData(guidata);
-        } catch (e) {
-            throw Error((e as any).toString())
-        }
-    }
+
 
     useEffect(() => {
-        if(props.vnr ?? props.vnr!=0) {
+        async function wsGet() {
+            try {
+                const guidata = await hon_form_ws.get_honorar_by_nr(props.hon_float_nr);
+                s_setGuiData(guidata);
+            } catch (e) {
+                const errmsg = `wsget:get_honorar_by_nr:hon_float_nr=${props.hon_float_nr}:${e}`;
+                showMayBeHtmlError(toastCenter,{
+                    e, errprefix:errmsg
+                })
+            }
+        }
+        if(props.hon_float_nr ?? props.hon_float_nr!=0) {
             wsGet()
         }
-        if (props.vnr==0) {
-            // Neuer Datensatz
-            s_setRechGuiData(createNewRechGuiData())
-        }
-    }, [props.vnr])
+    }, [props.hon_float_nr,toastCenter])
 
-    async function handleSaveGuiData(chgGuiData: RechGuiData) {
+    async function handleSaveGuiData(chgGuiData: HonGuiData) {
         try {
-            const saveres = await rech_form_ws.rech_form_save(chgGuiData);
-            if (saveres.errors) {
-                s_setRechFormRowErrs(saveres.errors);
-            } else if (saveres.rech_data) {
-                s_setRechGuiData(saveres.rech_data);
-                navigate(DkmFaktRouterConsts.getRechFormUrl(saveres.rech_data.rech_row?.vnr ||0, "saved"))
-            } else {
-                throw new Error("errors und rech_Data is null");
-            }
+            const savedGuiData = await hon_form_ws.update(chgGuiData);
+                s_setGuiData(savedGuiData);
         } catch (e) {
-            throw new Error((e as any).toString());
+            const errmsg = `handleSaveGuiData: chgGuiData=${chgGuiData}:${e}`;
+            showMayBeHtmlError(toastCenter, {e,errprefix:errmsg})
         }
     }
 
     function buildMenuItem():BaseMenuItem {
-        const ret = MITM_RECH_FORM;
-        ret.path = DkmFaktRouterConsts.getRechListSearchUrl(props.unique_search_key);
+        const ret = MITM_HON_LIST;
+        ret.path = DkmFaktRouterConsts.getHonListSearchUrl(props.unique_search_key);
         return ret;
     }
 
     function renderMenuBar() {
-        return <BaseMenuBar items={[buildMenuItem()]}  currentCapt={"Rechnung bearbeiten"}/>
+        return <BaseMenuBar items={[buildMenuItem()]}  currentCapt={"Honorar bearbeiten"}/>
     }
 
-    async function handelRemovePosRow(posRowNr:number):Promise<void> {
-        await rech_form_ws.remove_pos_row(posRowNr);
+
+    async function handleCreateDocx(hon_float_nr:number):Promise<number> {
+        return hon_form_ws.cre_docx(hon_float_nr);
     }
 
-    async function handleCreateDocx(vnr:number):Promise<number> {
-        return rech_form_ws.createDocx(vnr);
+    async function handleResettleHonorar(lastSettleDate:Date, nr:Float):Promise<void> {
+        try {
+            const newGuiData = await  hon_form_ws.resettle_json({
+                last_settle_date: lastSettleDate,
+                nr
+            })
+            s_setGuiData(newGuiData);
+            toastCenter.showSuccess("Neuberechnung erfolgreich", 2000);
+        } catch(e) {
+            const errmsg = `neuberechnen: letztes Datum für Arbeitsbericht: ${lastSettleDate},
+                honorar pk:${nr},${e}`
+            showMayBeHtmlError(toastCenter, { e, errprefix:errmsg})
+        }
+
     }
 
-    if (s_rechGuiData && s_rechGuiData.rech_row && s_kunhonCbxItems) {
+    if (s_guiData && s_guiData.hon_row) {
         return <BaseLayout menu={renderMenuBar()}>
-            <RechFormComp
-                guiData={s_rechGuiData}
-                kuhonCbx={s_kunhonCbxItems}
-                rechFormRowErrs={s_rechFormRowErrs}
+            <HonFormComp
+                guiData={s_guiData}
                 fnSaveGuiData={handleSaveGuiData}
-                fnRemovePosRow={handelRemovePosRow}
-                fnCreateDox={handleCreateDocx}
+                fnCreateDocx={handleCreateDocx}
+                fnResettleHonorar={handleResettleHonorar}
             />
         </BaseLayout>
 
@@ -94,4 +98,4 @@ function HonFormCtrl(props: Props) {
     }
 }
 
-export default RechFormCtrl;
+export default HonFormCtrl;

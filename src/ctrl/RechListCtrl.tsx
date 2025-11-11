@@ -12,6 +12,7 @@ import BaseMenuBar from "../layout/BaseMenuBar.tsx";
 import {MITM_RECH_LIST, MITM_RECH_NEW} from "../layout/dkm_fakt_menu.ts";
 import {DkmFaktRouterConsts} from "../dkm_fakt_router.ts";
 import {useToastCenter} from "../dkm_comps/ToastCenterContext.tsx";
+import {showMayBeHtmlError} from "../dkm_comps/err_handling.tsx";
 
 interface Props {
     searchKey?:string
@@ -49,11 +50,6 @@ const RechListCtrl = function RechListCtrl(props:Props) {
     //         s_setSearchKey(getUniqueStr());
     //     }
     // }, [props.searchKey]);
-    function showError(e:unknown) {
-        const msg =`${e}`;
-        toastCenter.showError(msg);
-    }
-
     function handleRechListSearch(searchData: RechListSearchData) {
         s_setSearchData(searchData);
         rech_list_ws.rech_list_search(searchData)
@@ -68,8 +64,7 @@ const RechListCtrl = function RechListCtrl(props:Props) {
                 navigate(DkmFaktRouterConsts.getRechListSearchUrl(newSearchKey));
             })
             .catch(err => {
-
-                showError(err);
+                showMayBeHtmlError(toastCenter, err)
             })
     }
 
