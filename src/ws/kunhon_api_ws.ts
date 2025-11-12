@@ -1,6 +1,8 @@
 import {DkmUrlBuilder} from "@at.dkm/dkm-ts-lib-websrvc/lib/dkm_url_builder";
-import {execDjGet} from "../dkm_django/dkm_django_ws.ts";
+import {execDjGet, execDjPost} from "../dkm_django/dkm_django_ws.ts";
 import type {OptionItem} from "../dkm_comps/DkmNativeSelect.tsx";
+import type {KundenhonorarRow} from "../model/kuhon_form_m.ts";
+import type {Float} from "../dkm_django/dkm_django_m.ts";
 
 // rech_form_ws.ts kundenhonorar/api/cbx_items
 const CONTEXT_NAME="dkmfakt/appdkmfakt";
@@ -26,5 +28,20 @@ export async function cbxItems() :Promise<Array<OptionItem>>{
     return execDjGet(url);
 }
 
+//get_gp_cbx
+export async function get_gp_cbx():Promise<Array<OptionItem>> {
+    const url=buildWebSrvcUrl("get_gp_cbx")
+    return execDjGet(url)
+}
 
+//kundenhonorar/api/get_kuhon_row/<str:nr>
+export async function get_kuhon_row(kuhon_nr:Float):Promise<KundenhonorarRow> {
+    const url=buildWebSrvcUrl("get_kuhon_row",[kuhon_nr.toString()])
+    return execDjGet(url);
+}
+
+export async function save(row:KundenhonorarRow):Promise<KundenhonorarRow> {
+    const url=buildWebSrvcUrl("save")
+    return execDjPost(url, row)
+}
 

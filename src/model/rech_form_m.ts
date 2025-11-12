@@ -1,8 +1,8 @@
-import type { MayBeDate, MayBeDecimal, MayBeFloat, MayBeInt, MayBeString} from "../dkm_django/dkm_django_m.ts";
+import type { MayBeDate, MayBeDecimal, MayBeFloat, MayBeInteger, MayBeString} from "../dkm_django/dkm_django_m.ts";
 
 export interface RechFormRow {
     //     #vnr -> Pk
-    vnr?:MayBeInt
+    vnr?:MayBeInteger
     // vnr=forms.FloatField(required=False,
     //                      widget=forms.HiddenInput())
     // #rechnungsnr
@@ -26,17 +26,17 @@ export interface RechFormRow {
     mwst?:MayBeDecimal
     // gesamtpreis=create_2_digit_field(data_attr="gesamtpreis")
     gesamtpreis?:MayBeDecimal
-    do_id?:MayBeInt
+    do_id?:MayBeInteger
 }
 
 export interface RechPosRow {
     // pos = models.FloatField(db_column='Pos', blank=True, null=True)  # Field name made lowercase.
-    pos?:MayBeInt
+    pos?:MayBeInteger
     // bezeichnung = models.CharField(max_length=ArtikelrechnungConst.bezeichnung_fl, db_collation='Latin1_General_CI_AS',
     //                                blank=True, null=True)
     bezeichnung?:MayBeString
     // rechnnr = models.IntegerField(blank=True, null=True)
-    rechnnr?:MayBeInt
+    rechnnr?:MayBeInteger
     // menge = models.DecimalField(db_column='Menge',
     //                           blank=True, null=True,max_digits=19,decimal_places=2)  # Field name made lowercase.
     menge?:MayBeFloat
@@ -50,7 +50,7 @@ export interface RechPosRow {
     //                                blank=True, null=True)  # Field name made lowercase.
     rechnungsnr_c?:MayBeString
     // nr = models.AutoField(primary_key=True)
-    nr?:MayBeInt
+    nr?:MayBeInteger
 }
 export interface RechGuiData{
     rech_row:RechFormRow|null

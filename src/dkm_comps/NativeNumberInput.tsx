@@ -31,7 +31,7 @@ export function NativeNumberInput(props:Props) {
                 props.onChange(parseFloat(evt.target.value));
             }
         }
-        const className = calcRealClassName("native-number-input", props.className, props.additionalClassName);
+        const className = calcRealClassName("native-number-input w-full", props.className, props.additionalClassName);
         const additionalProps :Record<string, any>={}
         if (props.readonly) {
             additionalProps["readonly"] = props.readonly;

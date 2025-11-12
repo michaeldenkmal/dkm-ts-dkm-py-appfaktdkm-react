@@ -7,6 +7,15 @@ export const DkmFaktRouterConsts = {
     getHonFormUrl(hon_float_nr: Float, uq_search_key:string): string {
         return `/hon_form/${hon_float_nr}/${uq_search_key}`
     },
+    getKuHonFormUrlTemplate(): string {
+        return `/kuhon_form/:kuhon_nr`
+    },
+    getKuHonFormUrl(kuhon_nr: Float): string {
+        return `/kuhon_form/${kuhon_nr}/`
+    },
+    getKuHonListUrl():string {
+        return `/kuhon_list`
+    },
     getNewRechUrl():string {
         return `/rech_form/0/new`
     },

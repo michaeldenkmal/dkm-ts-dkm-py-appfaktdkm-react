@@ -1,5 +1,6 @@
 import Decimal from "decimal.js";
 
+export type MayBeInteger = number|null|undefined
 export type MayBeInt = number|null|undefined
 export type MayBeFloat = number|null|undefined
 export type MayBeDecimal = Decimal|null|undefined

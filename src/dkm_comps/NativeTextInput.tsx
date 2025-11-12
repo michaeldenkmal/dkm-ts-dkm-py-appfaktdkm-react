@@ -23,7 +23,7 @@ export function NativeTextInput(props: Props): JSX.Element {
             props.onChange(evt.target.value);
         }
     }
-    const className = calcRealClassName("native-text-input",props.className, props.additionalClassName);
+    const className = calcRealClassName("native-text-input w-full",props.className, props.additionalClassName);
     const additionalProps ={};
     if (props.maxlen) {
         additionalProps["maxlength"] = props.maxlen;

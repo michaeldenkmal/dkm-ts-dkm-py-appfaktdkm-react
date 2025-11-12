@@ -5,6 +5,7 @@ interface Props {
     label?:string
     children?: any
     felxGrow?: T_flexGrow
+    tw_width_class?:string
 }
 
 // für TailWind
@@ -29,10 +30,11 @@ function DkmRespFormCell(props: Props) {
         return null;
     }
 
-    const my_flexGrow = props.felxGrow || "1";
-    const my_flex_class = `flex-${my_flexGrow}`
+    //const my_flexGrow = props.felxGrow || "1";
+    //const my_flex_class = `${props.tw_width_class}`
+
     return (
-        <div className={my_flex_class}>
+        <div className={"flex"}>
             {renderLabel()}
             {props.children}
         </div>

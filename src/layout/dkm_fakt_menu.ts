@@ -12,6 +12,10 @@ export const MITM_HON_LIST : BaseMenuItem = {
     path: "/hon_list/start"
 }
 
+export const MITM_KUHON_LIST : BaseMenuItem = {
+    label: "Kundenhonorarliste",
+    path: DkmFaktRouterConsts.getKuHonListUrl()
+}
 export const MITM_HON_ABRECH : BaseMenuItem = {
     label: "Honorarabrechnung",
     path: "/honorar/form"

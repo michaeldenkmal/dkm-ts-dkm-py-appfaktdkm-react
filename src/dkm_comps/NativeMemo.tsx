@@ -19,7 +19,7 @@ export function NativeMemo(props: Props) {
             props.onChange(evt.target.value);
         }
     }
-    const className = calcRealClassName("native-memo-input",props.className, props.additionalClassName);
+    const className = calcRealClassName("native-memo-input w-full",props.className, props.additionalClassName);
     const additionalProps:Record<string, any>={};
     if (props.maxlen) {
         additionalProps["maxlength"] = props.maxlen;

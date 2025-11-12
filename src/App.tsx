@@ -11,6 +11,9 @@ import {useGlobalEvent} from "./dkm_comps/useGlobalEvent.tsx";
 import {DKM_ERROR_EVENT} from "./dkm_comps/global_event_util.ts";
 import HtmlViewer from "./dkm_comps/HtmlViewerComp.tsx";
 import HonAbrCtrl from "./ctrl/HonAbrCtrl.tsx";
+import {DkmFaktRouterConsts} from "./dkm_fakt_router.ts";
+import KuHonList from "./ctrl/KuHonListCtrl.tsx";
+import KuHonFormCtrl from "./ctrl/KuHonFormCtrl.tsx";
 
 
 
@@ -51,6 +54,14 @@ function App() {
             </Route>
             <Route path="/hon_abr" >
                 <HonAbrCtrl/>
+            </Route>
+            <Route path="/kuhon_form/:kuhon_nr">
+                {params =>
+                    <KuHonFormCtrl kuhon_nr={parseFloat(params.kuhon_nr)}/>
+                    }
+            </Route>
+            <Route path={DkmFaktRouterConsts.getKuHonListUrl()} >
+                <KuHonList/>
             </Route>
             {/* <Route path="/:rest*">{() => <h2>404 – not found</h2>}</Route> */}
             </>
