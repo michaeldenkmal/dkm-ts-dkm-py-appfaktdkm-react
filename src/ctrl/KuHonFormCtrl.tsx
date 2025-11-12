@@ -59,6 +59,7 @@ function KuHonFormCtrl(props: Props) {
         try {
             const saved_row = await kuhon_api_ws.save(chgRow);
             s_setRow(saved_row);
+            toastCenter.showSuccess(`erfolgreich gespeichert`)
         } catch (e) {
             const errmsg = `handleSaveGuiData: chgRpw=${chgRow}:${e}`;
             showMayBeHtmlError(toastCenter, {e,errprefix:errmsg})

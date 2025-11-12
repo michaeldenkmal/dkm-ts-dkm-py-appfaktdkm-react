@@ -265,6 +265,12 @@ export default function KuHonFormComp(props: Props) {
         window.history.back();
     }
 
+    function handleBtnSaveClick() {
+        if (Object.keys(s_validateErrs).length==0) {
+            props.onSaveRow(s_row);
+        }
+    }
+
     return (
         <>
             <h1 className={"dkm-h1 text-left"}>Kundenhonorar bearbeiten</h1>
@@ -299,6 +305,7 @@ export default function KuHonFormComp(props: Props) {
                 <div className="pt-2">
                     <button disabled={!s_guiFlag.isSaveValid}
                             className="btn"
+                            onClick={handleBtnSaveClick}
                     >
                         Speichern
                     </button>
