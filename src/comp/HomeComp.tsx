@@ -2,9 +2,9 @@ import {Link} from "wouter";
 import {DkmFaktRouterConsts} from "../dkm_fakt_router.ts";
 
 function HomeComp() {
-    return <div>
-        <ul>
-            <li>
+    return <div >
+        <ul className={"space-y-4 text-4xl"}>
+            <li >
                 <Link className={"underline"} to="/work_reps">Arbeitsberichte</Link>
             </li>
             <li>

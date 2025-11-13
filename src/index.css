@@ -22,31 +22,31 @@
         font-size: smaller;
     }
     .dkm-link {
-        @apply hover:cursor-pointer font-medium text-black dark:text-blue-500 underline hover:underline
+        @apply hover:cursor-pointer font-medium text-black dark:text-blue-500 underline hover:underline;
     }
 
     .dkm-tr-highlight {
-        @apply bg-blue-50
+        @apply bg-blue-50;
     }
 
     .dkm-tr-zebra {
-        @apply even:bg-amber-50 odd:bg-amber-200
+        @apply even:bg-amber-50 odd:bg-amber-200;
     }
 
     .dkm-table tr td {
-        @apply p-1 align-top
+        @apply p-1 align-top;
     }
 
     .dkm-table tr th {
-        @apply p-1 align-top
+        @apply p-1 align-top;
     }
     button {
         @apply text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2
         dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800
-        disabled:bg-gray-100 disabled:text-gray-500
+        disabled:bg-gray-100 disabled:text-gray-500;
     }
     .dkm-input-disabled {
-        @apply disabled:bg-gray-300 disabled:text-gray-500
+        @apply disabled:bg-gray-300 disabled:text-gray-500;
     }
 
     .dkm-button, button {
@@ -54,16 +54,16 @@
             border-gray-200 hover:bg-gray-100 hover:text-blue-700
             focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700
             dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700
-            disabled:bg-gray-100 disabled:text-gray-500
+            disabled:bg-gray-100 disabled:text-gray-500;
     }
     .dkm-form input,textarea,select {
-        @apply  max-w-full w-full
+        @apply  max-w-full w-full;
     }
     .dkm-form input:disabled,textarea:disabled,select:disabled {
-        @apply  bg-gray-100 text-gray-500 cursor-not-allowed opacity-70
+        @apply  bg-gray-100 text-gray-500 cursor-not-allowed opacity-70;
     }
     .dkm-form-row {
-        @apply w-full sm:w-1/2 lg:w-1/3 p-2
+        @apply w-full sm:w-1/2 lg:w-1/3 p-2;
     }
 
     .dkm-form-row input,select {
@@ -71,27 +71,27 @@
     }
 
     .dkm-form label {
-        @apply font-bold
+        @apply font-bold;
     }
     .dkm-form {
-        @apply m-1.5 bg-blue-100 rounded-xs p-2
+        @apply m-1.5 bg-blue-100 rounded-xs p-2;
     }
     .dkm-resp-form-wrapper {
-        @apply flex flex-wrap
+        @apply flex flex-wrap;
     }
 
     .dkm-h1 {
-        @apply text-center mb-4 text-shadow-lg font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white
+        @apply text-center mb-4 text-shadow-lg font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white;
     }
     #content {
-        @apply w-full bg-white text-center
+        @apply w-full bg-white text-center;
     }
     /*DkmWorkVwEntry*/
     .dkmvalue {
-        @apply w-full lg:w-1/10 text-left
+        @apply w-full lg:w-1/10 text-left;
     }
     .ownRow {
-        @apply w-full
+        @apply w-full;
     }
     .arbBerRow {
         @apply odd:bg-white even:bg-gray-100 hover:bg-blue-100 p-4 mb-7;
@@ -109,7 +109,7 @@
 }
 
 .table-colgroup-responsive {
-    @apply hidden md:table-column-group
+    @apply hidden md:table-column-group;
 }
 /* Zelle */
 .table-cell-responsive {
@@ -154,7 +154,7 @@
 }
 
 input,textarea,select {
-        @apply  border-1 border-solid border-gray-800 rounded-lg bg-white p-1.5
+        @apply  border-1 border-solid border-gray-800 rounded-lg bg-white p-1.5;
 }
 
 /*input[type=submit],button {

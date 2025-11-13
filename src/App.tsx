@@ -1,5 +1,5 @@
 import './App.css'
-import {Route} from "wouter";
+import {Route, Router} from "wouter";
 import RechListCtrl from "./ctrl/RechListCtrl.tsx";
 
 import "./index.css";
@@ -29,7 +29,7 @@ function App() {
     }
 
     return (
-        < >
+        <Router base="/dkmfaktfe">
             {renderHtmlViewer()}
             {/*<nav style={{marginBottom: "1rem"}}>*/}
             {/*    <Link href="/rech_list/start">Rechnungen</Link>*/}
@@ -66,7 +66,7 @@ function App() {
                 <KuHonList/>
             </Route>
             {/* <Route path="/:rest*">{() => <h2>404 – not found</h2>}</Route> */}
-            </>
+        </Router>
     )
 }
 

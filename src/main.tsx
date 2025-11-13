@@ -36,8 +36,27 @@ if (myurl.startsWith("http://localhost:517")) {
         })
 } else {
     // TODO
-    initIDbConf(myurl, "", {});
-    setupReactRoot();
+    ensureCsrfToken("../dkmfakt")
+        .then(csrftoken => {
+            initIDbConf(myurl, "", {
+                //[DKMFAKT_APPDKMFAKT_CONTEXT]: "http://localhost:8000"
+                // "wa_ga_gastv":"http://localhost:8084",
+                // "wa_ga_anwlst":"http://localhost:8084",
+                // "dkmMVC":"http://localhost:8084",
+                // "wa_ga_grpvw23":"http://localhost:8084"
+            }, {
+                [DKMFAKT_APPDKMFAKT_CONTEXT]:
+                    {
+                        headers: {
+                            "X-CSRFToken": csrftoken || ""
+                        }
+                    }
+            })
+            setupReactRoot();
+        })
+        .catch(err => {
+            throw new Error(err)
+        })
 }
 
 window.onerror = function (msg, url, line, col, error) {
@@ -50,6 +69,7 @@ window.addEventListener("unhandledrejection", function (event) {
         msg: event.reason,
     })
 });
+
 
 function setupReactRoot() {
     createRoot(document.getElementById('root')!).render(

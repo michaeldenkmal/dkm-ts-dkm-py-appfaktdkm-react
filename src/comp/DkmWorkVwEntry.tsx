@@ -53,7 +53,7 @@ export default function DkmWorkVwEntry(props:Props): JSX.Element {
             <span id={buildId("h_wart")} className="dkmvalue">für Wartung:{fmtNum(props.row.h_wart)}</span>
             <span id={buildId("honorar")} className="dkmvalue">Honorar:{fmtNum(props.row.HONORAR)}</span>
             <span id={buildId("gesamthonorar")} className="dkmvalue">Gesamt:{fmtNum(props.row.GESAMTHONORAR)}</span>
-            <span id={buildId("taetigkeit")} className="text-left text-wrap w-77 mt-2 bg-cyan-50">{props.row.TAETIGKEIT ?? ""}</span>
+            <span id={buildId("taetigkeit")} className="text-left text-wrap w-77 lg:w-300 mt-2">{props.row.TAETIGKEIT ?? ""}</span>
         </div>
     )
 }
