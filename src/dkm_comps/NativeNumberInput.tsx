@@ -5,6 +5,7 @@ import {calcRealClassName} from "./native_ctrl_util.ts";
 interface Props {
     value:number|null|undefined
     className?:string
+    name?:string
     readonly?:boolean
     additionalClassName?:string
     onChange?:(newNum:number|null)=>void
@@ -35,6 +36,9 @@ export function NativeNumberInput(props:Props) {
         const additionalProps :Record<string, any>={}
         if (props.readonly) {
             additionalProps["readonly"] = props.readonly;
+        }
+        if (props.name) {
+            additionalProps["name"] = props.name;
         }
         return <input className={className} type="number" inputMode="numeric" onChange={handleChange}
                       value={props.value||""} {...additionalProps} required={props.required} />

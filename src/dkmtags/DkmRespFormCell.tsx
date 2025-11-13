@@ -1,44 +1,34 @@
+import type {MayBeString} from "../dkm_django/dkm_django_m.ts";
+import {calcRealClassName} from "../dkm_comps/native_ctrl_util.ts";
+import NativeErrInfo from "../dkm_comps/NativeErrInfo.tsx";
 
-type T_flexGrow = 1|2|3|4|5|6|7|8|9
-
-interface Props {
-    label?:string
-    children?: any
-    felxGrow?: T_flexGrow
-    tw_width_class?:string
+export interface Props {
+    label: string
+    field:string
+    shouldRenderError:boolean
+    errors?: MayBeString
+    children: React.ReactNode
+    required?:boolean
+    additionalClassName?:string
 }
 
-// für TailWind
-export const TAIL_WIN_FLEX_GROW = {
-    f1: "flex-1",
-    f2: "flex-2",
-    f3: "flex-3",
-    f4: "flex-4",
-    f5: "flex-5",
-    f6: "flex-6",
-    f7: "flex-7",
-    f8: "flex-8",
-    f9: "flex-9"
-}
+export default function DkmRespFormCell(props:Props) {
 
-function DkmRespFormCell(props: Props) {
+    const {   additionalClassName, label, field, children,required,
+        shouldRenderError, errors} = props;
 
-    function renderLabel() {
-        if (props.label) {
-            return <label>{props.label}</label>
-        }
-        return null;
-    }
-
-    //const my_flexGrow = props.felxGrow || "1";
-    //const my_flex_class = `${props.tw_width_class}`
-
+    const className =  calcRealClassName("flex flex-col gap-1 items-start","",additionalClassName)
     return (
-        <div className={"flex"}>
-            {renderLabel()}
-            {props.children}
+        <div className={className}>
+            <label  htmlFor={field}>
+                {label}
+                {required && "*"}
+            </label>
+            {children}
+            {shouldRenderError &&
+                <NativeErrInfo error={errors}/>}
         </div>
-    )
+    );
+
 }
 
-export default DkmRespFormCell;

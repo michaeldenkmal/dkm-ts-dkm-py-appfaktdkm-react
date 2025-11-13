@@ -16,3 +16,8 @@ export interface KundenhonorarRow {
     bmd_nr?: MayBeInteger;
     gp_id?: MayBeFloat;
 }
+
+export function getKundenhonorarRowByNr (kohorows:Array<KundenhonorarRow>,kuhoNr: number): KundenhonorarRow|undefined {
+    return kohorows.find(r=>r.nr == kuhoNr)
+
+}

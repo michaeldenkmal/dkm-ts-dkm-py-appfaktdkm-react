@@ -27,6 +27,7 @@ import {
     rechFormReducer
 } from "./rech_form_data_reducer.ts";
 import {gotoDoc} from "../oh_url_hander/ouh_docs.ts";
+import DkmRespFormRow from "../dkmtags/DkmRespFormRow.tsx";
 
 
 interface Props {
@@ -36,6 +37,10 @@ interface Props {
     fnSaveGuiData: (guidata: RechGuiData) => void
     fnRemovePosRow: (posRowNr: number) => Promise<void>;
     fnCreateDox: (vnr: number) => Promise<number>;
+}
+
+function checkRechFormRowName(f: keyof RechFormRow): string {
+    return f as any as string;
 }
 
 interface RechPossTrProps {
@@ -68,7 +73,7 @@ function RechPossTr(props: RechPossTrProps) {
                                additionalClassName={"w-full md:w-20"}
                                onChange={handleRechPosChg}/>
             <span className={"w-6 inline-block mt-2"}><TrashIcon className={"w-6 h-6"}
-                                                            onClick={() => props.fnDeleteRow(props.rowIdx)}/>
+                                                                 onClick={() => props.fnDeleteRow(props.rowIdx)}/>
                 </span>
         </DkmRespTableCell>
         <DkmRespTableCell label={"Bezeichnung"} valueClass={"flex-3"}>
@@ -176,15 +181,21 @@ function RechFormComp(props: Props) {
             })
         }
 
-        return <DkmRespFormCell label={"Firma1"}>
+        return <DkmRespFormCell label={"Firma1"}
+                                field={checkRechFormRowName("do_id")} shouldRenderError={false} required={true}
+                                additionalClassName={"w-full lg:w-3/8"} >
             <DkmNativeSelect selectItems={props.kuhonCbx}
+                             name={checkRechFormRowName("do_id")}
                              value={s_guiData?.rech_row?.f_nr?.toString() || ""}
                              onSelected={handleSelected}/>
         </DkmRespFormCell>
     }
 
     function renderVerrechnetAm() {
-        return <DkmRespFormCell label={"Rechnungsdatum"}>
+        return <DkmRespFormCell label={"Rechnungsdatum"} shouldRenderError={false}
+            field={checkRechFormRowName("verrechnet_am")}
+                                additionalClassName={"w-full lg:w-1/8"}
+        >
             <div>
                 {fmtGermanDate(props.guiData?.rech_row?.verrechnet_am)}
             </div>
@@ -192,7 +203,9 @@ function RechFormComp(props: Props) {
     }
 
     function renderRechnungsNr() {
-        return <DkmRespFormCell label={"Rechnungsnr."}>
+        return <DkmRespFormCell label={"Rechnungsnr."} field={checkRechFormRowName("rechnungsnr")} shouldRenderError={false}
+            additionalClassName={"w-full lg:w-1/8"}
+        >
             <div>
                 {props.guiData.rech_row?.rechnungsnr}
             </div>
@@ -201,7 +214,10 @@ function RechFormComp(props: Props) {
 
 
     function renderZwischensumme() {
-        return <DkmRespFormCell label={"Zwischensumme"}>
+        return <DkmRespFormCell label={"Zwischensumme"} shouldRenderError={false}
+                                field={checkRechFormRowName("zwischensumme")}
+            additionalClassName={"w-full lg:w-1/8"}
+        >
             <div>
                 {fmtDecimal2Digits(props.guiData.rech_row?.zwischensumme)}
             </div>
@@ -209,7 +225,10 @@ function RechFormComp(props: Props) {
     }
 
     function renderMwst() {
-        return <DkmRespFormCell label={"Mwst"}>
+        return <DkmRespFormCell label={"Mwst"} field={checkRechFormRowName("mwst")}
+            shouldRenderError={false}
+                                additionalClassName={"w-full lg:w-1/8"}
+        >
             <div>
                 {fmtDecimal2Digits(props.guiData.rech_row?.mwst)}
             </div>
@@ -217,7 +236,9 @@ function RechFormComp(props: Props) {
     }
 
     function renderGesamtPreis() {
-        return <DkmRespFormCell label={"Mwst"}>
+        return <DkmRespFormCell label={"Gesamtpreis"} field={checkRechFormRowName("gesamtpreis")}
+            shouldRenderError={false} additionalClassName={"w-full lg:w-1/8"}
+        >
             <div>
                 {fmtDecimal2Digits(props.guiData.rech_row?.gesamtpreis)}
             </div>
@@ -395,16 +416,20 @@ function RechFormComp(props: Props) {
         return null;
     }
     return (
-        <DkmRespForm>
+        <DkmRespForm addtionalClasses={"w-full xl:5/6 dkm-form"}>
             {renderDlgRemovePosRow()}
-            {renderFirma()}
-            {renderVerrechnetAm()}
-            {renderRechnungsNr()}
-            {renderZwischensumme()}
-            {renderMwst()}
-            {renderGesamtPreis()}
-            {renderPoss()}
-            <DkmRespFormCell>
+            <DkmRespFormRow>
+                {renderFirma()}
+                {renderVerrechnetAm()}
+                {renderRechnungsNr()}
+                {renderZwischensumme()}
+                {renderMwst()}
+                {renderGesamtPreis()}
+            </DkmRespFormRow>
+            <DkmRespFormRow>
+                {renderPoss()}
+            </DkmRespFormRow>
+            <DkmRespFormRow>
                 < button type={"button"}
                          disabled={calcDisabledSave()}
                          className={"dkm-default-button"}
@@ -425,7 +450,7 @@ function RechFormComp(props: Props) {
                          onClick={handleOpenDocx}>
                     Word öffnen
                 </button>
-            </DkmRespFormCell>
+            </DkmRespFormRow>
         </DkmRespForm>
     )
 }

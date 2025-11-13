@@ -5,6 +5,9 @@ function HomeComp() {
     return <div>
         <ul>
             <li>
+                <Link className={"underline"} to="/work_reps">Arbeitsberichte</Link>
+            </li>
+            <li>
                 <Link className={"underline"} to="/rech_list/start">Rechnungen</Link>
             </li>
             <li>

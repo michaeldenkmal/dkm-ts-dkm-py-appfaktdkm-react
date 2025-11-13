@@ -10,6 +10,9 @@ export const DkmFaktRouterConsts = {
     getKuHonFormUrlTemplate(): string {
         return `/kuhon_form/:kuhon_nr`
     },
+    getWorkRepUrlTemplate():string {
+        return `/work_reps`
+    },
     getKuHonFormUrl(kuhon_nr: Float): string {
         return `/kuhon_form/${kuhon_nr}/`
     },

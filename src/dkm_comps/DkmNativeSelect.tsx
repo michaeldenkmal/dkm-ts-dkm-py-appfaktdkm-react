@@ -13,6 +13,7 @@ interface Props {
     emptyOptionItem?: OptionItem
     onSelected: (item: OptionItem) => void
     additionalClassName?:string
+    name?:string
 
 }
 
@@ -46,7 +47,7 @@ function DkmNativeSelect(props: Props) {
     }
     const realClassName = calcRealClassName("w-full",props.className,props.additionalClassName);;
     return (
-        <select onChange={handleSelect} value={props.value}  className={realClassName} >
+        <select onChange={handleSelect} value={props.value}  className={realClassName} name={props.name} >
             {s_optionItems.map(oi => renderOption(oi))}
         </select>
     )

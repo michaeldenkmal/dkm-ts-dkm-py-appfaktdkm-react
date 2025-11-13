@@ -16,7 +16,7 @@ interface Props {
     rows: Array<RechListViewModel>
     searchData: RechListSearchData
     uq_searchKey: string
-    navigate:(path:string) => void
+    navigate: (path: string) => void
     onStartSearch: (data: RechListSearchData) => void
 }
 
@@ -25,7 +25,7 @@ let lastClickRechNr = 0;
 interface RechListCompTableProps {
     rows: Array<RechListViewModel>
     uq_searchKey: string
-    navigate:(path:string) => void
+    navigate: (path: string) => void
 }
 
 //                 <th class="table-head-th">Rechnungsnr</th>
@@ -35,20 +35,19 @@ function RechListCompTable(props: RechListCompTableProps) {
     const rowScroller = useRowScroller();
 
 
-
-    useLayoutEffect(()=>{
+    useLayoutEffect(() => {
         if (lastClickRechNr) {
             rowScroller.scrollToRow(lastClickRechNr);
         }
-    },[props.rows]);
+    }, [props.rows]);
 
-    function handleOnLinkChange(rech_pk:number,url:string) {
-        lastClickRechNr=rech_pk;
+    function handleOnLinkChange(rech_pk: number, url: string) {
+        lastClickRechNr = rech_pk;
         props.navigate(url);
     }
 
-    function calcTrClass(row:RechListViewModel) {
-        const classes:string[] = ["hover:bg-blue-50"];
+    function calcTrClass(row: RechListViewModel) {
+        const classes: string[] = ["hover:bg-blue-50"];
         if (lastClickRechNr == row.rech_pk) {
             classes.push("bg-green-100");
         }
@@ -61,12 +60,12 @@ function RechListCompTable(props: RechListCompTableProps) {
 
     function renderTableRow(row: RechListViewModel) {
         return <DkmRespTableRow key={row.rech_pk} ref={rowScroller.registerRowRef(row.rech_pk)}
-            additionalClasses={calcTrClass(row) }
-            onMouseEnter={()=>handleTrMousEnter(row)}
+                                additionalClasses={calcTrClass(row)}
+                                onMouseEnter={() => handleTrMousEnter(row)}
         >
             <DkmRespTableCell label={"Rechnungsnr"} tdClass={"text-left"}>
                 <div className={"dkm-link"}
-                      onClick={()=> handleOnLinkChange(row.rech_pk,DkmFaktRouterConsts.getRechFormUrl(row.rech_pk,props.uq_searchKey))} >
+                     onClick={() => handleOnLinkChange(row.rech_pk, DkmFaktRouterConsts.getRechFormUrl(row.rech_pk, props.uq_searchKey))}>
                     {row.rech_num}</div>
             </DkmRespTableCell>
             <DkmRespTableCell label={"Kundename"} tdClass={"text-left"}>
@@ -131,25 +130,24 @@ function RechListSearch(props: RechListSearchProps) {
     }
 
     return <DkmRespForm>
-        <DkmRespFormCell>
-            <label>Rechnungsnr</label>
+        <DkmRespFormCell label={"Rechnungsnr"} field={"search_expr_rechnum"}
+                         shouldRenderError={false}>
             <input type="text"
                    value={s_state.search_expr_rechnum}
                    onChange={handleRechNumInpChange}
             />
         </DkmRespFormCell>
-        <DkmRespFormCell>
-            <label>Firma</label>
+        <DkmRespFormCell label={"Firma"} field={"search_expr_firma"}
+                         shouldRenderError={false}
+        >
             <input type="text"
                    value={s_state.search_expr_firma}
                    onChange={handleFirmaInpChange}
             />
         </DkmRespFormCell>
-        <DkmRespFormCell>
-            <DkmButton onClick={() => props.onStartSearch(s_state)} defaultBtn={true}>
-                suchen
-            </DkmButton>
-        </DkmRespFormCell>
+        <DkmButton onClick={() => props.onStartSearch(s_state)} defaultBtn={true}>
+            suchen
+        </DkmButton>
     </DkmRespForm>
 }
 

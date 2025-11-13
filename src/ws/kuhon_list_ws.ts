@@ -30,3 +30,4 @@ export async function get_all(pars:GetAllPars):Promise<Array<KuHonViewRow>> {
     return execDjPost(url,pars);
 }
 
+

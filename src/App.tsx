@@ -14,6 +14,7 @@ import HonAbrCtrl from "./ctrl/HonAbrCtrl.tsx";
 import {DkmFaktRouterConsts} from "./dkm_fakt_router.ts";
 import KuHonList from "./ctrl/KuHonListCtrl.tsx";
 import KuHonFormCtrl from "./ctrl/KuHonFormCtrl.tsx";
+import DkmWorkCtrl from "./ctrl/DkmWorkCtrl.tsx";
 
 
 
@@ -34,6 +35,7 @@ function App() {
             {/*    <Link href="/rech_list/start">Rechnungen</Link>*/}
             {/*</nav>*/}
             <Route path={"/"} ><HomeCtrl/></Route>
+            <Route path={"/work_reps"} ><DkmWorkCtrl/></Route>
             <Route path="/rech_list/:search_key" >
                 {params =>
                    <RechListCtrl searchKey={params.search_key}/>

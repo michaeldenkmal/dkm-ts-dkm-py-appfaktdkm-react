@@ -23,6 +23,7 @@ import {useImmerReducer} from "use-immer";
 import NativeDateInput from "../dkm_comps/NativeDateInput.tsx";
 import NativeDialog from "../dkm_comps/NativeDialog.tsx";
 import {showMayBeHtmlError} from "../dkm_comps/err_handling.tsx";
+import DkmRespFormRow from "../dkmtags/DkmRespFormRow.tsx";
 
 
 interface Props {
@@ -143,7 +144,7 @@ function HonFormComp(props: Props) {
 
     // anwen
     function renderFirma() {
-        return <DkmRespFormCell label={"Firma1"}>
+        return <DkmRespFormCell label={"Firma1"} shouldRenderError={true} required field={"anwen"} >
             <TrViewOnlyValue>
                 {s_guiData.hon_row.anwen ||""}
             </TrViewOnlyValue>
@@ -151,7 +152,7 @@ function HonFormComp(props: Props) {
     }
     // hononrarnr
     function renderHonorarnr() {
-        return <DkmRespFormCell label={"Honorarnr."}>
+        return <DkmRespFormCell label={"Honorarnr."} shouldRenderError={false} field={"honorarnr"}>
             <TrViewOnlyValue>
                 {s_guiData.hon_row.honorarnr ||""}
             </TrViewOnlyValue>
@@ -159,7 +160,7 @@ function HonFormComp(props: Props) {
     }
     // Gesamtpreis
     function renderGesamtpreis() {
-        return <DkmRespFormCell label={"Gesamtbetrag"}>
+        return <DkmRespFormCell label={"Gesamtbetrag"} shouldRenderError={false} field={"gesamtpreis"}>
             <TrViewOnlyValue>
                 { fmtGermanNum(s_guiData.hon_row.gesamtpreis)}
             </TrViewOnlyValue>
@@ -170,7 +171,7 @@ function HonFormComp(props: Props) {
         function handleChg(newValue:boolean|null|undefined) {
             s_dispGuiData({type:"set_weggeschickt",istWeggeschickt:newValue});
         }
-        return <DkmRespFormCell label={"weggeschickt?"}>
+        return <DkmRespFormCell label={"weggeschickt?"} shouldRenderError={false} field={"weggeschickt"}>
             <TrViewOnlyValue>
                 <NativeBoolInput value={s_guiData.hon_row.weggeschickt}
                                  onChange={handleChg}/>
@@ -304,7 +305,7 @@ function HonFormComp(props: Props) {
             {/*//weggeschickt*/}
             {renderWeggeschickt()}
             {renderPoss()}
-            <DkmRespFormCell>
+            <DkmRespFormRow>
                 < button type={"button"}
                          disabled={s_formGuiState.btnSaveDisabled}
                          className={"dkm-default-button"}
@@ -327,7 +328,7 @@ function HonFormComp(props: Props) {
                          onClick={()=> s_setShowRessettleDlg(true)}>
                     Neu berechnen
                 </button>
-            </DkmRespFormCell>
+            </DkmRespFormRow>
         </DkmRespForm>
     )
 }

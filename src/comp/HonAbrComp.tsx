@@ -1,6 +1,5 @@
 import {useEffect, useState} from "react";
 import DkmRespForm from "../dkmtags/DkmRespForm.tsx";
-import DkmRespFormCell from "../dkmtags/DkmRespFormCell.tsx";
 import {fmtGermanDate, fmtTimeOnlyHourMin} from "@at.dkm/dkm-ts-lib-gen/lib/dateUtil";
 import DkmRespTableMain from "../dkmtags/DkmRespTableMain.tsx";
 import DkmRespTableHead from "../dkmtags/DkmRespTableHead.tsx";
@@ -21,6 +20,7 @@ import {
     honAbrReducer
 } from "./hon_abr_data_reducer.ts";
 import React from "react";
+import DkmRespFormRow from "../dkmtags/DkmRespFormRow.tsx";
 
 
 interface Props {
@@ -230,7 +230,7 @@ function HonAbrComp(props: Props) {
         <DkmRespForm>
             {renderTable()}
             <hr/>
-            <DkmRespFormCell>
+            <DkmRespFormRow>
                 < button type={"button"}
                          disabled={s_guiFlags?.btnExecAbrechdisabled}
                          className={"dkm-default-button"}
@@ -239,7 +239,7 @@ function HonAbrComp(props: Props) {
                          }}>
                     Abrechnen starten
                 </button>
-            </DkmRespFormCell>
+            </DkmRespFormRow>
         </DkmRespForm>
     )
 }

@@ -32,9 +32,9 @@ export default function BaseLayout(props:Props) {
         </div>
             {renderSideBar()}
         <div id={"content"}>
-            <div className="min-h-screen grid grid-rows-[auto_1fr_auto]">
+            <div className="min-h-screen grid grid-rows-[auto_1fr_auto] content">
                 <header className="border-b p-4"><Link  className={"underline"} to={"/"}>Dkm-Fakturierung -  Home</Link></header>
-                <main className="p-1">{props.children}</main>
+                <main className="p-2">{props.children}</main>
                 <footer className="border-t p-1 text-sm">© {new Date().getFullYear()}</footer>
             </div>
 

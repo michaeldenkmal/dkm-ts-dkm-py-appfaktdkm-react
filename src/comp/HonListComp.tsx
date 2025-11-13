@@ -149,25 +149,21 @@ function HonListSearch(props: HonListSearchProps) {
     }
 
     return <DkmRespForm>
-        <DkmRespFormCell>
-            <label>Honorarnr</label>
+        <DkmRespFormCell label={"Honorarnr"} field={"honorarnr"} shouldRenderError={false}>
             <input type="text"
                    value={s_state.honorarnr}
                    onChange={handleHonNumInpChange}
             />
         </DkmRespFormCell>
-        <DkmRespFormCell>
-            <label>Firma</label>
+        <DkmRespFormCell label={"Firma"} field={"firma"} shouldRenderError={false}>
             <input type="text"
                    value={s_state.firma}
                    onChange={handleFirmaInpChange}
             />
         </DkmRespFormCell>
-        <DkmRespFormCell>
             <DkmButton onClick={() => props.onStartSearch(s_state)} defaultBtn={true}>
                 suchen
             </DkmButton>
-        </DkmRespFormCell>
     </DkmRespForm>
 }
 
