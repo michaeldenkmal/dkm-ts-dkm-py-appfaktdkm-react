@@ -1,3 +1,16 @@
+# Deployment
+
+## Client builden
+
+```cmd
+ .\build_and_deploy.ps1
+```
+
+## Server 
+
+auf ```dkmsrvc``` folgendes Skript ausfürhen: 
+```"C:\inetpub\wwwroot\update_faktfe.bat"```
+
 # Backend
 
 https://github.com/michaeldenkmal/dkm-py-dkm-faktmssql.git
