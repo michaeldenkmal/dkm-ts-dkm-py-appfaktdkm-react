@@ -89,6 +89,10 @@ export interface RechFormRowErrs{
     f_nr?:MayBeString
 }
 
+export function anyErrors(errs:RechFormRowErrs):boolean {
+    const len = Object.keys(errs).length
+    return !!len;
+}
 
 export interface SaveRechDataRes{
     rech_data?: RechGuiData |null

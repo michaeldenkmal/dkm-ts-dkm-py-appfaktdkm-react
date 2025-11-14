@@ -1,10 +1,11 @@
 import {
+    anyErrors,
     type RechFormRow,
     type RechFormRowErrs,
     type RechGuiData,
     type RechPosRow
 } from "../model/rech_form_m.ts";
-import {useEffect, useReducer, useState} from "react";
+import {useEffect, useState} from "react";
 import DkmRespForm from "../dkmtags/DkmRespForm.tsx";
 import DkmRespFormCell from "../dkmtags/DkmRespFormCell.tsx";
 import DkmNativeSelect, {type OptionItem} from "../dkm_comps/DkmNativeSelect.tsx";
@@ -24,10 +25,11 @@ import {
     createActDelPos, createActionRechPos,
     createActRech,
     createActSetDataDirect,
-    rechFormReducer
+    rechFormReducer, validateRechGuiData
 } from "./rech_form_data_reducer.ts";
 import {gotoDoc} from "../oh_url_hander/ouh_docs.ts";
 import DkmRespFormRow from "../dkmtags/DkmRespFormRow.tsx";
+import {useImmerReducer} from "use-immer";
 
 
 interface Props {
@@ -116,8 +118,8 @@ function RechPossTr(props: RechPossTrProps) {
 
 function RechFormComp(props: Props) {
     //const [s_guiData, s_setGuiData] = useState<RechGuiData | null>(null);
-    const [s_guiData, s_dispGuiData] = useReducer(rechFormReducer, props.guiData);
-
+    const [s_guiData, s_dispGuiData] = useImmerReducer(rechFormReducer, props.guiData);
+    const [s_errors, s_setErrors] = useState<RechFormRowErrs>({});
     const [s_showDlgRemovePosRow, s_setShowDlgRemovePosRow] = useState<boolean>(false);
     const [s_rowPosToDelete, s_setRowPosToDelete] = useState<number>(0);
 
@@ -125,6 +127,10 @@ function RechFormComp(props: Props) {
         //s_setGuiData(props.guiData);
         s_dispGuiData(createActSetDataDirect(props.guiData))
     }, [props.guiData])
+
+    useEffect(()=> {
+        s_setErrors(validateRechGuiData(s_guiData));
+    },[s_guiData])
 
     function renderDlgRemovePosRow() {
         if (!s_showDlgRemovePosRow) {
@@ -182,10 +188,15 @@ function RechFormComp(props: Props) {
         }
 
         return <DkmRespFormCell label={"Firma1"}
-                                field={checkRechFormRowName("do_id")} shouldRenderError={false} required={true}
-                                additionalClassName={"w-full lg:w-3/8"} >
+                                field={checkRechFormRowName("f_nr")} shouldRenderError={true} required={true}
+                                errors={s_errors.f_nr}
+                                additionalClassName={"w-full lg:w-2/8"} >
             <DkmNativeSelect selectItems={props.kuhonCbx}
-                             name={checkRechFormRowName("do_id")}
+                             emptyOptionItem={{
+                                 key:"",
+                                 value:"--- Keine Firma ausgewählt ---"
+                             }}
+                             name={checkRechFormRowName("f_nr")}
                              value={s_guiData?.rech_row?.f_nr?.toString() || ""}
                              onSelected={handleSelected}/>
         </DkmRespFormCell>
@@ -207,7 +218,7 @@ function RechFormComp(props: Props) {
             additionalClassName={"w-full lg:w-1/8"}
         >
             <div>
-                {props.guiData.rech_row?.rechnungsnr}
+                {s_guiData.rech_row?.rechnungsnr}
             </div>
         </DkmRespFormCell>
     }
@@ -219,7 +230,7 @@ function RechFormComp(props: Props) {
             additionalClassName={"w-full lg:w-1/8"}
         >
             <div>
-                {fmtDecimal2Digits(props.guiData.rech_row?.zwischensumme)}
+                {fmtDecimal2Digits(s_guiData.rech_row?.zwischensumme)}
             </div>
         </DkmRespFormCell>
     }
@@ -230,7 +241,7 @@ function RechFormComp(props: Props) {
                                 additionalClassName={"w-full lg:w-1/8"}
         >
             <div>
-                {fmtDecimal2Digits(props.guiData.rech_row?.mwst)}
+                {fmtDecimal2Digits(s_guiData.rech_row?.mwst)}
             </div>
         </DkmRespFormCell>
     }
@@ -240,7 +251,7 @@ function RechFormComp(props: Props) {
             shouldRenderError={false} additionalClassName={"w-full lg:w-1/8"}
         >
             <div>
-                {fmtDecimal2Digits(props.guiData.rech_row?.gesamtpreis)}
+                {fmtDecimal2Digits(s_guiData.rech_row?.gesamtpreis)}
             </div>
         </DkmRespFormCell>
     }
@@ -318,14 +329,6 @@ function RechFormComp(props: Props) {
         }
 
         function handleChg(newv: RechPosRow, rowIdx: number, recalc: boolean) {
-            // if (!s_guiData) {
-            //     return;
-            // }
-            // const newGuiData: RechGuiData = {...s_guiData};
-            // const possrows = [...newGuiData.pos_rows || []];
-            // possrows[rowIdx] = newv;
-            // newGuiData.pos_rows = possrows;
-            // s_setGuiData(newGuiData);
             s_dispGuiData(createActionRechPos({
                 rowIdx,
                 recalc,
@@ -382,11 +385,13 @@ function RechFormComp(props: Props) {
         return !(s_guiData?.rech_row?.do_id)
     }
 
+
+
     function calcDisabledSave(): boolean {
         const dataChanged = JSON.stringify(props.guiData) !=
             JSON.stringify(s_guiData);
         if (dataChanged) {
-            return false;
+            return anyErrors(s_errors);
         }
         return true;
     }
@@ -416,7 +421,7 @@ function RechFormComp(props: Props) {
         return null;
     }
     return (
-        <DkmRespForm addtionalClasses={"w-full xl:5/6 dkm-form"}>
+        <DkmRespForm addtionalClasses={"w-full dkm-form"}>
             {renderDlgRemovePosRow()}
             <DkmRespFormRow>
                 {renderFirma()}

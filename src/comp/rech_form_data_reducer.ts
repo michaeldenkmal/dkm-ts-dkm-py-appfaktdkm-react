@@ -1,4 +1,10 @@
-import {createNewRechPosRow, type RechFormRow, type RechGuiData, type RechPosRow} from "../model/rech_form_m.ts";
+import {
+    createNewRechPosRow,
+    type RechFormRow,
+    type RechFormRowErrs,
+    type RechGuiData,
+    type RechPosRow
+} from "../model/rech_form_m.ts";
 import Decimal from "decimal.js";
 
 export type EnActions = "set_data_direct" | "change_rech" | "recalc" | "change_rech_pos"
@@ -65,25 +71,33 @@ export function createActAddPosRow():Action {
     }
 }
 // action handler
-export function _handleActRech(guiData: RechGuiData, act: ActRech): RechGuiData {
-    const newGuiData = {...guiData};
-    if (!newGuiData.rech_row) {
-        return newGuiData;
+export function _handleActRech(guiData: RechGuiData, act: ActRech): void {
+    if (!guiData.rech_row) {
+        return ;
     }
-    const rechRow = newGuiData.rech_row;
-    act.mutateRech(rechRow);
-    newGuiData.rech_row = rechRow;
-    return newGuiData;
+    act.mutateRech(guiData.rech_row);
 }
 
-export function _handleActDelPos(guiData: RechGuiData, act: ActDelPos): RechGuiData {
-    const newGuiData = {...guiData};
-    if (!newGuiData.pos_rows) {
-        return newGuiData;
+export function _handleActDelPos(guiData: RechGuiData, act: ActDelPos):void {
+    if (!guiData.pos_rows) {
+        return
     }
     const newPosRows = guiData.pos_rows.filter(act.fnPredicate);
-    newGuiData.pos_rows = newPosRows;
-    return newGuiData;
+    guiData.pos_rows = newPosRows;
+}
+
+export function validateRechGuiData(guidata: RechGuiData):RechFormRowErrs {
+    if (guidata.rech_row ) {
+        if (guidata.rech_row.f_nr) {
+            return {}
+        } else {
+            return {
+                f_nr:"Firma muss ausgewählt werden"
+            }
+        }
+    } else {
+        throw new Error("guidata.rech_row is null")
+    }
 }
 
 export function recalcGuiData(guidata: RechGuiData) {
@@ -106,47 +120,51 @@ export function recalcGuiData(guidata: RechGuiData) {
 }
 
 export function _handlActPos(guiData: RechGuiData, act: ActPos): RechGuiData {
-    const newGuiData = {...guiData};
-    if (!newGuiData.pos_rows) {
-        return newGuiData;
+    if (!guiData.pos_rows) {
+        throw Error("dürfte nicht vorkommen");
     }
-    let posRow = newGuiData.pos_rows[act.rowIdx];
-    posRow=act.mutatePos(posRow);
-    newGuiData.pos_rows[act.rowIdx] = posRow;
+    const newrow =act.mutatePos(guiData.pos_rows[act.rowIdx]);
+
+    const proxyrow=guiData.pos_rows[act.rowIdx];
+    // Properties müssen einzeln kopieren werden
+    // weil sonst eine Readonly referenz eingebaut wird,
+    // an der dann reacalcGUiuData scheitert
+    Object.keys(newrow).forEach(prop=> {
+        proxyrow[prop]=newrow[prop];
+    })
     if (act.recalc) {
-        return recalcGuiData(newGuiData);
+        recalcGuiData(guiData);
     }
-    return newGuiData;
+    return guiData;
 }
 
 export function _handleActSetDataDirect(act: ActSetDataDirect): RechGuiData {
-    return {...act.guiData};
+    return act.guiData;
 }
 
-export function _handleActAddPosRow(guiData: RechGuiData): RechGuiData {
-    const newGuiData = {...guiData};
-    if (!newGuiData.pos_rows) {
-        return newGuiData;
+export function _handleActAddPosRow(guiData: RechGuiData) {
+    if (!guiData.pos_rows) {
+        guiData.pos_rows=[];
     }
-    const newPosRows = [...newGuiData.pos_rows,
-        createNewRechPosRow(newGuiData.pos_rows.length + 1)];
-    newGuiData.pos_rows = newPosRows;
-    return newGuiData;
+    guiData.pos_rows.push(createNewRechPosRow(guiData.pos_rows.length + 1));
 }
 
-export function rechFormReducer(guidata: RechGuiData, action: Action): RechGuiData {
+export function rechFormReducer(guidata: RechGuiData, action: Action): RechGuiData|void {
     console.log(`guiData:${JSON.stringify(guidata)}, action=${JSON.stringify(action)}`);
     switch (action.actions) {
         case "set_data_direct":
             return _handleActSetDataDirect(action as ActSetDataDirect);
         case "change_rech":
-            return _handleActRech(guidata, action as ActRech);
+            _handleActRech(guidata, action as ActRech);
+            return;
         case "change_rech_pos":
             return _handlActPos(guidata, action as ActPos);
         case "del_pos_row":
-            return _handleActDelPos(guidata, action as ActDelPos);
+            _handleActDelPos(guidata, action as ActDelPos);
+            return;
         case "add_pos_row":
-            return _handleActAddPosRow(guidata);
+            _handleActAddPosRow(guidata);
+            return;
     }
     throw new Error("Invalid action " + action.actions);
 }
