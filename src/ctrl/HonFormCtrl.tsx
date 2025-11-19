@@ -1,9 +1,9 @@
 import {useEffect,  useState} from "react";
 import * as hon_form_ws from "../ws/hon_form_ws.ts";
 
-import BaseLayout from "../layout/BaseLayout.tsx";
-import BaseMenuBar, {type BaseMenuItem} from "../layout/BaseMenuBar.tsx";
-import {MITM_HON_LIST} from "../layout/dkm_fakt_menu.ts";
+import BaseLayout from "../dkm_comps/BaseLayout.tsx";
+import BaseMenuBar, {type BaseMenuItem} from "../dkm_comps/BaseMenuBar.tsx";
+import {MITM_HON_LIST} from "../dkm_fakt_menu.ts";
 import {DkmFaktRouterConsts} from "../dkm_fakt_router.ts";
 import type {HonGuiData} from "../model/hon_form_m.ts";
 import {useToastCenter} from "../dkm_comps/ToastCenterContext.tsx";

@@ -1,13 +1,13 @@
 import {useEffect, useRef, useState} from "react";
-import DkmRespForm from "../dkmtags/DkmRespForm.tsx";
-import DkmRespFormCell from "../dkmtags/DkmRespFormCell.tsx";
+import DkmRespForm from "../dkm_comps/DkmRespForm.tsx";
+import DkmRespFormCell from "../dkm_comps/DkmRespFormCell.tsx";
 import {fmtGermanDate, fmtTimeOnlyHourMin} from "@at.dkm/dkm-ts-lib-gen/lib/dateUtil";
-import DkmRespTableMain from "../dkmtags/DkmRespTableMain.tsx";
-import DkmRespTableHead from "../dkmtags/DkmRespTableHead.tsx";
-import DkmRespTableHeadTh from "../dkmtags/DkmRespTableHeadTh.tsx";
-import DkmRespTableRow from "../dkmtags/DkmRespTableRow.tsx";
-import DkmRespTableCell from "../dkmtags/DkmRespTableCell.tsx";
-import {gotoDoc} from "../oh_url_hander/ouh_docs.ts";
+import DkmRespTableMain from "../dkm_comps/DkmRespTableMain.tsx";
+import DkmRespTableHead from "../dkm_comps/DkmRespTableHead.tsx";
+import DkmRespTableHeadTh from "../dkm_comps/DkmRespTableHeadTh.tsx";
+import DkmRespTableRow from "../dkm_comps/DkmRespTableRow.tsx";
+import DkmRespTableCell from "../dkm_comps/DkmRespTableCell.tsx";
+import {gotoDoc} from "../dkm_comps/ouh_docs.ts";
 import type {HonGuiData, WorkRepRow} from "../model/hon_form_m.ts";
 import {fmtGermanNum} from "@at.dkm/dkm-ts-lib-gen/lib/u";
 import {NativeTextInput} from "../dkm_comps/NativeTextInput.tsx";
@@ -23,7 +23,7 @@ import {useImmerReducer} from "use-immer";
 import NativeDateInput from "../dkm_comps/NativeDateInput.tsx";
 import NativeDialog from "../dkm_comps/NativeDialog.tsx";
 import {showMayBeHtmlError} from "../dkm_comps/err_handling.tsx";
-import DkmRespFormRow from "../dkmtags/DkmRespFormRow.tsx";
+import DkmRespFormRow from "../dkm_comps/DkmRespFormRow.tsx";
 
 
 interface Props {

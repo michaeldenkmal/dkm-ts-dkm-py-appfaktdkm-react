@@ -1,11 +1,11 @@
 import {useEffect, useState} from "react";
-import DkmRespForm from "../dkmtags/DkmRespForm.tsx";
+import DkmRespForm from "../dkm_comps/DkmRespForm.tsx";
 import {fmtGermanDate, fmtTimeOnlyHourMin} from "@at.dkm/dkm-ts-lib-gen/lib/dateUtil";
-import DkmRespTableMain from "../dkmtags/DkmRespTableMain.tsx";
-import DkmRespTableHead from "../dkmtags/DkmRespTableHead.tsx";
-import DkmRespTableHeadTh from "../dkmtags/DkmRespTableHeadTh.tsx";
-import DkmRespTableRow from "../dkmtags/DkmRespTableRow.tsx";
-import DkmRespTableCell from "../dkmtags/DkmRespTableCell.tsx";
+import DkmRespTableMain from "../dkm_comps/DkmRespTableMain.tsx";
+import DkmRespTableHead from "../dkm_comps/DkmRespTableHead.tsx";
+import DkmRespTableHeadTh from "../dkm_comps/DkmRespTableHeadTh.tsx";
+import DkmRespTableRow from "../dkm_comps/DkmRespTableRow.tsx";
+import DkmRespTableCell from "../dkm_comps/DkmRespTableCell.tsx";
 import type {WorkRepRow} from "../model/hon_form_m.ts";
 import {fmtGermanCurrency} from "@at.dkm/dkm-ts-lib-gen/lib/u";
 import NativeBoolInput from "../dkm_comps/NativeBoolInput.tsx";
@@ -20,7 +20,7 @@ import {
     honAbrReducer
 } from "./hon_abr_data_reducer.ts";
 import React from "react";
-import DkmRespFormRow from "../dkmtags/DkmRespFormRow.tsx";
+import DkmRespFormRow from "../dkm_comps/DkmRespFormRow.tsx";
 
 
 interface Props {

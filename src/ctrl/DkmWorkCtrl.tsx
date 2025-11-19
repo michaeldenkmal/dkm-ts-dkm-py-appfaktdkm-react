@@ -9,8 +9,8 @@ import {dateWithoutTime} from "@at.dkm/dkm-ts-lib-gen/lib/dateUtil";
 import DkmSumNotAccountedComp from "../comp/DkmSumNotAccountedComp.tsx";
 import ErrhandlerComp from "../comp/ErrhandlerComp.tsx";
 import {getKundenhonorarRowByNr, type KundenhonorarRow} from "../model/kuhon_form_m.ts";
-import BaseLayout from "../layout/BaseLayout.tsx";
-import BaseMenuBar from "../layout/BaseMenuBar.tsx";
+import BaseLayout from "../dkm_comps/BaseLayout.tsx";
+import BaseMenuBar from "../dkm_comps/BaseMenuBar.tsx";
 
 export default function DkmWorkCtrl() {
     const [s_workRows,s_setWorkRows] = useState<Array<DatenabTestRow>>();

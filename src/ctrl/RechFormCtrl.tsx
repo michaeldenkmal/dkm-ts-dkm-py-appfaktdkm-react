@@ -5,9 +5,9 @@ import RechFormComp from "../comp/RechFormComp.tsx";
 import type {OptionItem} from "../dkm_comps/DkmNativeSelect.tsx";
 import {useDkmFaktCache} from "../store/useDkmFaktCache.tsx";
 
-import BaseLayout from "../layout/BaseLayout.tsx";
-import BaseMenuBar, {type BaseMenuItem} from "../layout/BaseMenuBar.tsx";
-import {MITM_RECH_FORM} from "../layout/dkm_fakt_menu.ts";
+import BaseLayout from "../dkm_comps/BaseLayout.tsx";
+import BaseMenuBar, {type BaseMenuItem} from "../dkm_comps/BaseMenuBar.tsx";
+import {MITM_RECH_FORM} from "../dkm_fakt_menu.ts";
 import {DkmFaktRouterConsts} from "../dkm_fakt_router.ts";
 import {useLocation} from "wouter";
 

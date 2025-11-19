@@ -7,9 +7,9 @@ import * as rech_list_ws from "../ws/rech_list_ws.ts";
 import {useLocation} from "wouter";
 import useSearchWithLink from "../dkm_comps/useSearchWithLink.ts";
 
-import BaseLayout from "../layout/BaseLayout.tsx";
-import BaseMenuBar from "../layout/BaseMenuBar.tsx";
-import {MITM_RECH_LIST, MITM_RECH_NEW} from "../layout/dkm_fakt_menu.ts";
+import BaseLayout from "../dkm_comps/BaseLayout.tsx";
+import BaseMenuBar from "../dkm_comps/BaseMenuBar.tsx";
+import {MITM_RECH_LIST, MITM_RECH_NEW} from "../dkm_fakt_menu.ts";
 import {DkmFaktRouterConsts} from "../dkm_fakt_router.ts";
 import {useToastCenter} from "../dkm_comps/ToastCenterContext.tsx";
 import {showMayBeHtmlError} from "../dkm_comps/err_handling.tsx";

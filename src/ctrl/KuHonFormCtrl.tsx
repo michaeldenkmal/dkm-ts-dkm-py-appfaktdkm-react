@@ -1,9 +1,9 @@
 import {useEffect,  useState} from "react";
 
 import * as kuhon_api_ws from "../ws/kunhon_api_ws.ts";
-import BaseLayout from "../layout/BaseLayout.tsx";
-import BaseMenuBar  from "../layout/BaseMenuBar.tsx";
-import { MITM_KUHON_LIST} from "../layout/dkm_fakt_menu.ts";
+import BaseLayout from "../dkm_comps/BaseLayout.tsx";
+import BaseMenuBar  from "../dkm_comps/BaseMenuBar.tsx";
+import { MITM_KUHON_LIST} from "../dkm_fakt_menu.ts";
 import {useToastCenter} from "../dkm_comps/ToastCenterContext.tsx";
 import type {Float} from "../dkm_django/dkm_django_m.ts";
 import {showMayBeHtmlError} from "../dkm_comps/err_handling.tsx";

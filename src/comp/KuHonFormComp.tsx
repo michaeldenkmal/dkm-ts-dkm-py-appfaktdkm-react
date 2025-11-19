@@ -8,7 +8,7 @@ import {
     validateKuHonRow
 } from "./kuhon_data_reducer.ts";
 import {useEffect, useState} from "react";
-import DkmRespForm from "../dkmtags/DkmRespForm.tsx";
+import DkmRespForm from "../dkm_comps/DkmRespForm.tsx";
 import {useImmerReducer} from "use-immer";
 import DkmFieldRow from "../dkm_comps/DkmFieldRow.tsx";
 import DkmNativeSelect, {type OptionItem} from "../dkm_comps/DkmNativeSelect.tsx";

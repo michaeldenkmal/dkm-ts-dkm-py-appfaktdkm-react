@@ -6,18 +6,18 @@ import {
     type RechPosRow
 } from "../model/rech_form_m.ts";
 import {useEffect, useState} from "react";
-import DkmRespForm from "../dkmtags/DkmRespForm.tsx";
-import DkmRespFormCell from "../dkmtags/DkmRespFormCell.tsx";
+import DkmRespForm from "../dkm_comps/DkmRespForm.tsx";
+import DkmRespFormCell from "../dkm_comps/DkmRespFormCell.tsx";
 import DkmNativeSelect, {type OptionItem} from "../dkm_comps/DkmNativeSelect.tsx";
 import {fmtGermanDate} from "@at.dkm/dkm-ts-lib-gen/lib/dateUtil";
-import DkmRespTableMain from "../dkmtags/DkmRespTableMain.tsx";
-import DkmRespTableHead from "../dkmtags/DkmRespTableHead.tsx";
-import DkmRespTableHeadTh from "../dkmtags/DkmRespTableHeadTh.tsx";
-import DkmRespTableRow from "../dkmtags/DkmRespTableRow.tsx";
+import DkmRespTableMain from "../dkm_comps/DkmRespTableMain.tsx";
+import DkmRespTableHead from "../dkm_comps/DkmRespTableHead.tsx";
+import DkmRespTableHeadTh from "../dkm_comps/DkmRespTableHeadTh.tsx";
+import DkmRespTableRow from "../dkm_comps/DkmRespTableRow.tsx";
 import {NativeNumberInput} from "../dkm_comps/NativeNumberInput.tsx";
 import {NativeMemo} from "../dkm_comps/NativeMemo.tsx";
 import {decimalToNumber, fmtDecimal2Digits, numberToDecimal} from "../dkm_comps/decimal_util.ts";
-import DkmRespTableCell from "../dkmtags/DkmRespTableCell.tsx";
+import DkmRespTableCell from "../dkm_comps/DkmRespTableCell.tsx";
 import {TrashIcon} from "@heroicons/react/16/solid";
 import NativeDialog from "../dkm_comps/NativeDialog.tsx";
 import {
@@ -27,8 +27,8 @@ import {
     createActSetDataDirect,
     rechFormReducer, validateRechGuiData
 } from "./rech_form_data_reducer.ts";
-import {gotoDoc} from "../oh_url_hander/ouh_docs.ts";
-import DkmRespFormRow from "../dkmtags/DkmRespFormRow.tsx";
+import {gotoDoc} from "../dkm_comps/ouh_docs.ts";
+import DkmRespFormRow from "../dkm_comps/DkmRespFormRow.tsx";
 import {useImmerReducer} from "use-immer";
 
 

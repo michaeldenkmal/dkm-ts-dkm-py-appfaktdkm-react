@@ -9,8 +9,8 @@ import {creActWorkRepChange, workRepReducer} from "./work_edit_data_reducer.ts";
 import type {MayBeDate} from "../dkm_django/dkm_django_m.ts";
 import {NativeNumberInput} from "../dkm_comps/NativeNumberInput.tsx";
 import {NativeMemo} from "../dkm_comps/NativeMemo.tsx";
-import DkmRespFormCell from "../dkmtags/DkmRespFormCell.tsx";
-import DkmRepFormRow from "../dkmtags/DkmRespFormRow.tsx";
+import DkmRespFormCell from "../dkm_comps/DkmRespFormCell.tsx";
+import DkmRepFormRow from "../dkm_comps/DkmRespFormRow.tsx";
 
 interface Props {
     row: DatenabTestRow

@@ -5,9 +5,9 @@ import {useToastCenter} from "../dkm_comps/ToastCenterContext.tsx";
 import useSearchWithLink from "../dkm_comps/useSearchWithLink.ts";
 import * as hon_list_ws from "../ws/hon_list_ws.ts";
 import {DkmFaktRouterConsts} from "../dkm_fakt_router.ts";
-import BaseMenuBar from "../layout/BaseMenuBar.tsx";
-import {MITM_HON_ABRECH, MITM_RECH_LIST} from "../layout/dkm_fakt_menu.ts";
-import BaseLayout from "../layout/BaseLayout.tsx";
+import BaseMenuBar from "../dkm_comps/BaseMenuBar.tsx";
+import {MITM_HON_ABRECH, MITM_RECH_LIST} from "../dkm_fakt_menu.ts";
+import BaseLayout from "../dkm_comps/BaseLayout.tsx";
 import HonListComp from "../comp/HonListComp.tsx";
 import {showMayBeHtmlError} from "../dkm_comps/err_handling.tsx";
 

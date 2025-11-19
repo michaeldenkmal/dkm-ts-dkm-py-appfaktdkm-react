@@ -1,6 +1,5 @@
-// Rechnungslisten
-import type {BaseMenuItem} from "./BaseMenuBar.tsx";
-import {DkmFaktRouterConsts} from "../dkm_fakt_router.ts";
+import type {BaseMenuItem} from "./dkm_comps/BaseMenuBar.tsx";
+import {DkmFaktRouterConsts} from "./dkm_fakt_router.ts";
 
 export const MITM_RECH_LIST : BaseMenuItem = {
     label: "Rechnungsliste",
