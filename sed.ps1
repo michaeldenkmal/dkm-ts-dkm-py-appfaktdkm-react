@@ -17,6 +17,7 @@ function sed($old_expr, $new_expr) {
 }
 
 # wichtig sind die einfachen Anführungs zeichen bei regexps
+#https://chatgpt.com/c/691e0a2d-09d0-832b-bbb6-9a7d4a87a4db
 $search_regex = ' from "(@at\.dkm/dkm-ts-lib-django/lib/[^"]+?)\.(?:ts|tsx)"'
 $repl_regex = ' from "$1"'
 
