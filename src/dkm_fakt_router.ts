@@ -1,4 +1,4 @@
-import type {Float} from "./dkm_django/dkm_django_m.ts";
+import type {Float} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m";
 
 export const DkmFaktRouterConsts = {
     getRechFormUrl(vnr: number, uq_search_key:string): string {

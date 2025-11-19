@@ -1,4 +1,4 @@
-import type {Integer} from "../dkm_django/dkm_django_m.ts";
+import type {Integer} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m";
 import Decimal from "decimal.js";
 
 export interface ArbRechTemp {

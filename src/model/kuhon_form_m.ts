@@ -1,4 +1,4 @@
-import type {Float, MayBeBool, MayBeFloat, MayBeInteger, MayBeString} from "../dkm_django/dkm_django_m.ts";
+import type {Float, MayBeBool, MayBeFloat, MayBeInteger, MayBeString} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m.ts";
 
 export interface KundenhonorarRow {
     nr: Float;

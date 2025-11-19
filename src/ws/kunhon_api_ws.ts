@@ -1,8 +1,8 @@
 import {DkmUrlBuilder} from "@at.dkm/dkm-ts-lib-websrvc/lib/dkm_url_builder";
-import {execDjGet, execDjPost} from "../dkm_django/dkm_django_ws.ts";
+import {execDjGet, execDjPost} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_ws.ts";
 import type {OptionItem} from "../dkm_comps/DkmNativeSelect.tsx";
 import type {KundenhonorarRow} from "../model/kuhon_form_m.ts";
-import type {Float, MayBeBool} from "../dkm_django/dkm_django_m.ts";
+import type {Float, MayBeBool} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m";
 
 // rech_form_ws.ts kundenhonorar/api/cbx_items
 const CONTEXT_NAME="dkmfakt/appdkmfakt";

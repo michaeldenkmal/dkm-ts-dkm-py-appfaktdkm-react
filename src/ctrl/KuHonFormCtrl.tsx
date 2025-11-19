@@ -5,7 +5,7 @@ import BaseLayout from "../dkm_comps/BaseLayout.tsx";
 import BaseMenuBar  from "../dkm_comps/BaseMenuBar.tsx";
 import { MITM_KUHON_LIST} from "../dkm_fakt_menu.ts";
 import {useToastCenter} from "../dkm_comps/ToastCenterContext.tsx";
-import type {Float} from "../dkm_django/dkm_django_m.ts";
+import type {Float} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m";
 import {showMayBeHtmlError} from "../dkm_comps/err_handling.tsx";
 import type {KundenhonorarRow} from "../model/kuhon_form_m.ts";
 import KuHonFormComp from "../comp/KuHonFormComp.tsx";

@@ -1,7 +1,7 @@
 import {DkmUrlBuilder} from "@at.dkm/dkm-ts-lib-websrvc/lib/dkm_url_builder";
-import type {Integer} from "../dkm_django/dkm_django_m.ts";
+import type {Integer} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m.ts";
 import type { RechGuiData, SaveRechDataRes} from "../model/rech_form_m.ts";
-import {execDjGet, execDjPost} from "../dkm_django/dkm_django_ws.ts";
+import {execDjGet, execDjPost} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_ws.ts";
 
 const CONTEXT_NAME="dkmfakt/appdkmfakt";
 const WS_APP_NAME="rechnung";

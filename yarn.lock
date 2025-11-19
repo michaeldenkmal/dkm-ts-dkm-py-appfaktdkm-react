@@ -41,15 +41,23 @@
   dependencies:
     "@at.dkm/dkm-ts-lib-gen" "^1.0.3"
 
+"@at.dkm/dkm-ts-lib-django@^1.0.0":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@at.dkm/dkm-ts-lib-django/-/dkm-ts-lib-django-1.0.1.tgz#39b916e5565b8cb45c0c188ff01eade8bacbeb1e"
+  integrity sha512-ri/mtLQzeYBxEnqr6OTEljalIy0t5hTry5EuNi6Oe0Zmo/l9+lYjMdzxpRjy67zye5cHdYBGpUWap/m85FUS3g==
+  dependencies:
+    "@at.dkm/dkm-ts-lib-gen" "^1.2.34"
+    decimal.js "^10.6.0"
+
 "@at.dkm/dkm-ts-lib-gen@^1.0.3":
   version "1.2.31"
   resolved "https://registry.yarnpkg.com/@at.dkm/dkm-ts-lib-gen/-/dkm-ts-lib-gen-1.2.31.tgz#450ded45f17cfe6665902f806d0f1c0428a14a12"
   integrity sha512-AdlUwjgt8UQsJI0p8Uk72LzlKehXmSikeDKuK+KlNRTvtoH/g7SlZZZtbRdaafjuVF9fLk1Qe6Oox/T2fgYAKg==
 
-"@at.dkm/dkm-ts-lib-gen@^1.2.33":
-  version "1.2.33"
-  resolved "https://registry.yarnpkg.com/@at.dkm/dkm-ts-lib-gen/-/dkm-ts-lib-gen-1.2.33.tgz#c049d87d4cac9a9dec61d9a5fda1ca5c619487ee"
-  integrity sha512-dSHRlZeWVSx8V+BE7x5+Nabhtyf8/XEPN8QAodD4OW8LJzfxPQw41gyB7uqm0A0nMtuaAWNs5SdC3YZPGrI9DQ==
+"@at.dkm/dkm-ts-lib-gen@^1.2.34":
+  version "1.2.34"
+  resolved "https://registry.yarnpkg.com/@at.dkm/dkm-ts-lib-gen/-/dkm-ts-lib-gen-1.2.34.tgz#20dd639de688e1b3af114f98e6db5c209b276d69"
+  integrity sha512-JvIDmRtM3V06bhJZuYGtwxDvvs1D7hMdC7K6R9BmzalnRslwtFnyyNZ9qd35ms/dM+NfLV8TJIfKgTcl+7BKCQ==
 
 "@at.dkm/dkm-ts-lib-jquery@^1.0.0":
   version "1.1.5"

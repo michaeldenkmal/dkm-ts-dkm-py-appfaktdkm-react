@@ -6,7 +6,7 @@ import NativeDateInput from "../dkm_comps/NativeDateInput.tsx";
 import {NativeTimeInput} from "../dkm_comps/NativeTimeInput.tsx";
 import {useImmerReducer} from "use-immer";
 import {creActWorkRepChange, workRepReducer} from "./work_edit_data_reducer.ts";
-import type {MayBeDate} from "../dkm_django/dkm_django_m.ts";
+import type {MayBeDate} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m";
 import {NativeNumberInput} from "../dkm_comps/NativeNumberInput.tsx";
 import {NativeMemo} from "../dkm_comps/NativeMemo.tsx";
 import DkmRespFormCell from "../dkm_comps/DkmRespFormCell.tsx";

@@ -8,7 +8,7 @@ import {fmtGermanNum} from "@at.dkm/dkm-ts-lib-gen/lib/u";
 import {DkmFaktRouterConsts} from "../dkm_fakt_router.ts";
 import {useRowScroller} from "../dkm_comps/useRowScroller.tsx";
 import type {KuHonViewRow} from "../model/kuhon_list_m.ts";
-import type {Float, MayBeFloat} from "../dkm_django/dkm_django_m.ts";
+import type {Float, MayBeFloat} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m";
 
 interface Props {
     rows: Array<KuHonViewRow>

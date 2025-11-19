@@ -12,7 +12,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@at.dkm/dkm-ts-lib-gen": "^1.2.33",
+    "@at.dkm/dkm-ts-lib-gen": "^1.2.34",
+    "@at.dkm/dkm-ts-lib-django": "^1.0.0",
     "@at.dkm/dkm-ts-lib-websrvc": "^1.1.22",
     "@heroicons/react": "^2.2.0",
     "@tailwindcss/vite": "^4.1.16",

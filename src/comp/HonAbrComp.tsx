@@ -9,7 +9,7 @@ import DkmRespTableCell from "../dkm_comps/DkmRespTableCell.tsx";
 import type {WorkRepRow} from "../model/hon_form_m.ts";
 import {fmtGermanCurrency} from "@at.dkm/dkm-ts-lib-gen/lib/u";
 import NativeBoolInput from "../dkm_comps/NativeBoolInput.tsx";
-import type {Float, MayBeBool} from "../dkm_django/dkm_django_m.ts";
+import type {Float, MayBeBool} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m";
 import {useImmerReducer} from "use-immer";
 import type {ArbRechTemp, CalcHonToSettleRes} from "../model/hon_abr_m.ts";
 import {fmtDecimal2Digits} from "../dkm_comps/decimal_util.ts";

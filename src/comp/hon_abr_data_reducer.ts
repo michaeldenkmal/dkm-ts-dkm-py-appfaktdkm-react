@@ -1,4 +1,4 @@
-import type {Integer, MayBeBool} from "../dkm_django/dkm_django_m.ts";
+import type {Integer, MayBeBool} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m.ts";
 import type {CaseMap} from "../dkm_comps/case_map.ts";
 import type {CalcHonToSettleRes} from "../model/hon_abr_m.ts";
 

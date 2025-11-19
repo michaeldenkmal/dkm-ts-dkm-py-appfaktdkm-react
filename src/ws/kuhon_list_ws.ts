@@ -1,7 +1,7 @@
 import {DkmUrlBuilder} from "@at.dkm/dkm-ts-lib-websrvc/lib/dkm_url_builder";
-import {execDjPost} from "../dkm_django/dkm_django_ws.ts";
+import {execDjPost} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_ws.ts";
 import type {KuHonViewRow} from "../model/kuhon_list_m.ts";
-import type {MayBeBool} from "../dkm_django/dkm_django_m.ts";
+import type {MayBeBool} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m.ts";
 
 const CONTEXT_NAME="dkmfakt/appdkmfakt";
 const WS_APP_NAME="kundenhonorar";

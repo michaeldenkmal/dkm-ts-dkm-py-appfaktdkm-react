@@ -9,7 +9,7 @@ import {useToastCenter} from "../dkm_comps/ToastCenterContext.tsx";
 import {showMayBeHtmlError} from "../dkm_comps/err_handling.tsx";
 import type {CalcHonToSettleRes} from "../model/hon_abr_m.ts";
 import HonAbrComp from "../comp/HonAbrComp.tsx";
-import type {Float} from "../dkm_django/dkm_django_m.ts";
+import type {Float} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m";
 import type {WorkRepRow} from "../model/hon_form_m.ts";
 
 

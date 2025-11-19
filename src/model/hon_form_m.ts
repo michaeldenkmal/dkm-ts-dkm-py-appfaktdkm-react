@@ -1,4 +1,4 @@
-import type {Float, MayBeBool, MayBeFloat, MayBeString} from "../dkm_django/dkm_django_m.ts";
+import type {Float, MayBeBool, MayBeFloat, MayBeString} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m.ts";
 
 
 

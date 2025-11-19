@@ -1,5 +1,5 @@
 import {NativeRadioGroup, type RadioOption} from "../dkm_comps/NativeRadioGroup.tsx";
-import type {MayBeString} from "../dkm_django/dkm_django_m.ts";
+import type {MayBeString} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m";
 import type {KuHoZustellArtType} from "./kuhon_zustell_art_m.ts";
 
 

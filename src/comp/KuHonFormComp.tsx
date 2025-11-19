@@ -1,5 +1,5 @@
 import type {KundenhonorarRow} from "../model/kuhon_form_m.ts";
-import type {MayBeBool, MayBeFloat, MayBeInteger, MayBeString} from "../dkm_django/dkm_django_m.ts";
+import type {MayBeBool, MayBeFloat, MayBeInteger, MayBeString} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m";
 import {
     calcKuHonGuiFlags, creActChange,
     type KuHonGuiFlags,

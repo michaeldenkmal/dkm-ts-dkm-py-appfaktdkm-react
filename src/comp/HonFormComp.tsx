@@ -17,7 +17,7 @@ import {
     honFormReducer
 } from "./hon_form_data_reducer.ts";
 import NativeBoolInput from "../dkm_comps/NativeBoolInput.tsx";
-import type {Float, MayBeDate, MayBeString} from "../dkm_django/dkm_django_m.ts";
+import type {Float, MayBeDate, MayBeString} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m";
 import {useToastCenter} from "../dkm_comps/ToastCenterContext.tsx";
 import {useImmerReducer} from "use-immer";
 import NativeDateInput from "../dkm_comps/NativeDateInput.tsx";

@@ -5,7 +5,7 @@ import App from './App.tsx'
 import {ToastCenterProvider} from "./dkm_comps/ToastCenterContext.tsx";
 
 import {initIDbConf} from "@at.dkm/dkm-ts-lib-websrvc/lib/IDbConf";
-import {ensureCsrfToken} from "./dkm_django/dkm_django_ws.ts";
+import {ensureCsrfToken} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_ws";
 import {dispatchErrorEvt} from "./dkm_comps/global_event_util.ts";
 
 const DKMFAKT_APPDKMFAKT_CONTEXT = "dkmfakt/appdkmfakt"

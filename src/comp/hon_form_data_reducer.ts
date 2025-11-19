@@ -1,5 +1,5 @@
 import type {HonGuiData, WorkRepRow} from "../model/hon_form_m.ts";
-import type {Float, Integer, MayBeBool,  MayBeString} from "../dkm_django/dkm_django_m.ts";
+import type {Float, Integer, MayBeBool,  MayBeString} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m";
 import type {CaseMap} from "../dkm_comps/case_map.ts";
 import {addToArrPropIfNotExists} from "../dkm_comps/arr_util.ts";
 import type {FormReduceState} from "./HonFormComp.tsx";

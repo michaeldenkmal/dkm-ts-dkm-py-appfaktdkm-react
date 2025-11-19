@@ -1,4 +1,4 @@
-import type {MayBeString} from "../dkm_django/dkm_django_m.ts";
+import type {MayBeString} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m.ts";
 
 export type KuHoZustellArtType = "Post"|"Email"|null|undefined|"";
 
