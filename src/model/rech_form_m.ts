@@ -1,4 +1,4 @@
-import type { MayBeDate, MayBeDecimal, MayBeFloat, MayBeInteger, MayBeString} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m.ts";
+import type { MayBeDate, MayBeDecimal, MayBeFloat, MayBeInteger, MayBeString} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m";
 
 export interface RechFormRow {
     //     #vnr -> Pk
@@ -98,4 +98,5 @@ export interface SaveRechDataRes{
     rech_data?: RechGuiData |null
     errors?: RechFormRowErrs|null
 }
+
 

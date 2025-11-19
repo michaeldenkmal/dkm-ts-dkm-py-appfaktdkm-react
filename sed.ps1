@@ -11,18 +11,13 @@ function handle_replace_file($fp, $old_expr, $new_expr) {
 }
 
 function sed($old_expr, $new_expr) {
-    Get-ChildItem ".\src" -Recurse -Include *.ts? | ForEach-Object {
+    Get-ChildItem ".\src" -Recurse -Include *.ts, *tsx | ForEach-Object {
         handle_replace_file -fp $_.FullName -old_expr $old_expr -new_expr $new_expr
     }
 }
 
 # wichtig sind die einfachen Anführungs zeichen bei regexps
-$regex = 'import type \{MayBeDate\} from "(@at\.dkm/dkm-ts-lib-django/lib/[^"]+?)\.(?:ts|tsx)"'
-$replacement = 'import type {MayBeDate} from "$1"'
-#$search ="@at.dkm/dkm-ts-lib-django/lib/dkm_django_m.ts"
-#$search ="@at.dkm/dkm-ts-lib-django/lib/dkm_django_ws.ts"
-#$replace ="@at.dkm/dkm-ts-lib-django/lib/dkm_django_m"
-#$replace ="@at.dkm/dkm-ts-lib-django/lib/dkm_django_ws"
+$search_regex = ' from "(@at\.dkm/dkm-ts-lib-django/lib/[^"]+?)\.(?:ts|tsx)"'
+$repl_regex = ' from "$1"'
 
-
-#sed -old_expr $search -new_expr $replace
+sed -old_expr $search_regex -new_expr $repl_regex

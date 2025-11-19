@@ -1,4 +1,4 @@
-import type {Float, MayBeBool, MayBeFloat, MayBeString} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m.ts";
+import type {Float, MayBeBool, MayBeFloat, MayBeString} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m";
 
 
 
@@ -26,4 +26,5 @@ export interface HonGuiData{
     hon_row_changed?:boolean
     work_rep_rows_changed?:Array<Float>
 }
+
 

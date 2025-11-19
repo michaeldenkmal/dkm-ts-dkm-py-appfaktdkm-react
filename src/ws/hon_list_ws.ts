@@ -1,5 +1,5 @@
 import {DkmUrlBuilder} from "@at.dkm/dkm-ts-lib-websrvc/lib/dkm_url_builder";
-import {execDjPost} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_ws.ts";
+import {execDjPost} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_ws";
 import type {HonListSearchData, HonListViewModel} from "../model/hon_list_m.ts";
 
 const CONTEXT_NAME="dkmfakt/appdkmfakt";
@@ -23,4 +23,5 @@ export async function hon_list_search(pars:HonListSearchData): Promise<Array<Hon
     const url = buildWebSrvcUrl("search")
     return execDjPost(url, pars);
 }
+
 

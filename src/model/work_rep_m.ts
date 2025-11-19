@@ -1,4 +1,4 @@
-import type {Float, MayBeDate, MayBeFloat, MayBeString} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m.ts";
+import type {Float, MayBeDate, MayBeFloat, MayBeString} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m";
 
 export interface DatenabTestRow {
     NR?: MayBeFloat;
@@ -38,3 +38,4 @@ export interface TgetSumNotAccountedArbsParams {
 export function sumUpSumNotAccountedRows(rows: TSumNotAccountedRow[]):number {
     return rows.reduce((sum,item)=>sum + (item.sum_not_accounted||0), 0);
 }
+

@@ -1,5 +1,5 @@
 //nr	Kundenname	Gp_id	Email Stunden honorar
-import type { MayBeFloat, MayBeString} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m.ts";
+import type { MayBeFloat, MayBeString} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m";
 
 export interface KuHonViewRow {
     nr:MayBeFloat
@@ -8,4 +8,5 @@ export interface KuHonViewRow {
     email:MayBeString
     stundenhon:MayBeFloat
 }
+
 

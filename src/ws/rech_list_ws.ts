@@ -1,6 +1,6 @@
 import type {RechListSearchData, RechListViewModel} from "../model/rech_list_m.ts";
 import {DkmUrlBuilder} from "@at.dkm/dkm-ts-lib-websrvc/lib/dkm_url_builder";
-import {execDjPost} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_ws.ts";
+import {execDjPost} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_ws";
 
 const CONTEXT_NAME="dkmfakt/appdkmfakt";
 const WS_APP_NAME="rechnung";
@@ -23,4 +23,5 @@ export async function rech_list_search(pars:RechListSearchData): Promise<Array<R
     const url = buildWebSrvcUrl("search")
     return execDjPost(url, pars);
 }
+
 

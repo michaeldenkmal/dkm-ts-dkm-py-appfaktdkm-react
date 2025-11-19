@@ -1,4 +1,4 @@
-import type {MayBeFloat} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m.ts";
+import type {MayBeFloat} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m";
 
 export interface HonListSearchData {
     honorarnr:string

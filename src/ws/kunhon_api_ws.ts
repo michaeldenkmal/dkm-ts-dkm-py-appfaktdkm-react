@@ -1,5 +1,5 @@
 import {DkmUrlBuilder} from "@at.dkm/dkm-ts-lib-websrvc/lib/dkm_url_builder";
-import {execDjGet, execDjPost} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_ws.ts";
+import {execDjGet, execDjPost} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_ws";
 import type {OptionItem} from "../dkm_comps/DkmNativeSelect.tsx";
 import type {KundenhonorarRow} from "../model/kuhon_form_m.ts";
 import type {Float, MayBeBool} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m";
@@ -49,4 +49,5 @@ export async function save(row:KundenhonorarRow):Promise<KundenhonorarRow> {
     const url=buildWebSrvcUrl("save")
     return execDjPost(url, row)
 }
+
 

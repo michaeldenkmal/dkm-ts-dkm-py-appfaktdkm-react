@@ -1,4 +1,4 @@
-import type {MayBeString} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m.ts";
+import type {MayBeString} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m";
 
 export type KuHoZustellArtType = "Post"|"Email"|null|undefined|"";
 
@@ -13,3 +13,4 @@ export function strToKuHoZustellArtType(str:MayBeString):KuHoZustellArtType {
     }
     return str as KuHoZustellArtType;
 }
+

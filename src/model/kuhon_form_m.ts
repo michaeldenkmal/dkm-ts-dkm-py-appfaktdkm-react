@@ -1,4 +1,4 @@
-import type {Float, MayBeBool, MayBeFloat, MayBeInteger, MayBeString} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m.ts";
+import type {Float, MayBeBool, MayBeFloat, MayBeInteger, MayBeString} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m";
 
 export interface KundenhonorarRow {
     nr: Float;
@@ -21,3 +21,4 @@ export function getKundenhonorarRowByNr (kohorows:Array<KundenhonorarRow>,kuhoNr
     return kohorows.find(r=>r.nr == kuhoNr)
 
 }
+
