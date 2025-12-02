@@ -30,6 +30,8 @@ import {
 import {gotoDoc} from "../dkm_comps/ouh_docs.ts";
 import DkmRespFormRow from "../dkm_comps/DkmRespFormRow.tsx";
 import {useImmerReducer} from "use-immer";
+import NativeBoolInput from "../dkm_comps/NativeBoolInput.tsx";
+import type {MayBeBool} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m";
 
 
 interface Props {
@@ -128,9 +130,9 @@ function RechFormComp(props: Props) {
         s_dispGuiData(createActSetDataDirect(props.guiData))
     }, [props.guiData])
 
-    useEffect(()=> {
+    useEffect(() => {
         s_setErrors(validateRechGuiData(s_guiData));
-    },[s_guiData])
+    }, [s_guiData])
 
     function renderDlgRemovePosRow() {
         if (!s_showDlgRemovePosRow) {
@@ -190,11 +192,11 @@ function RechFormComp(props: Props) {
         return <DkmRespFormCell label={"Firma1"}
                                 field={checkRechFormRowName("f_nr")} shouldRenderError={true} required={true}
                                 errors={s_errors.f_nr}
-                                additionalClassName={"w-full lg:w-2/8"} >
+                                additionalClassName={"w-full lg:w-2/8"}>
             <DkmNativeSelect selectItems={props.kuhonCbx}
                              emptyOptionItem={{
-                                 key:"",
-                                 value:"--- Keine Firma ausgewählt ---"
+                                 key: "",
+                                 value: "--- Keine Firma ausgewählt ---"
                              }}
                              name={checkRechFormRowName("f_nr")}
                              value={s_guiData?.rech_row?.f_nr?.toString() || ""}
@@ -204,8 +206,8 @@ function RechFormComp(props: Props) {
 
     function renderVerrechnetAm() {
         return <DkmRespFormCell label={"Rechnungsdatum"} shouldRenderError={false}
-            field={checkRechFormRowName("verrechnet_am")}
-                                additionalClassName={"w-full lg:w-1/8"}
+                                field={checkRechFormRowName("verrechnet_am")}
+                                additionalClassName={"w-full lg:w-1/9"}
         >
             <div>
                 {fmtGermanDate(props.guiData?.rech_row?.verrechnet_am)}
@@ -214,8 +216,9 @@ function RechFormComp(props: Props) {
     }
 
     function renderRechnungsNr() {
-        return <DkmRespFormCell label={"Rechnungsnr."} field={checkRechFormRowName("rechnungsnr")} shouldRenderError={false}
-            additionalClassName={"w-full lg:w-1/8"}
+        return <DkmRespFormCell label={"Rechnungsnr."} field={checkRechFormRowName("rechnungsnr")}
+                                shouldRenderError={false}
+                                additionalClassName={"w-full lg:w-1/9"}
         >
             <div>
                 {s_guiData.rech_row?.rechnungsnr}
@@ -227,7 +230,7 @@ function RechFormComp(props: Props) {
     function renderZwischensumme() {
         return <DkmRespFormCell label={"Zwischensumme"} shouldRenderError={false}
                                 field={checkRechFormRowName("zwischensumme")}
-            additionalClassName={"w-full lg:w-1/8"}
+                                additionalClassName={"w-full lg:w-1/9"}
         >
             <div>
                 {fmtDecimal2Digits(s_guiData.rech_row?.zwischensumme)}
@@ -237,8 +240,8 @@ function RechFormComp(props: Props) {
 
     function renderMwst() {
         return <DkmRespFormCell label={"Mwst"} field={checkRechFormRowName("mwst")}
-            shouldRenderError={false}
-                                additionalClassName={"w-full lg:w-1/8"}
+                                shouldRenderError={false}
+                                additionalClassName={"w-full lg:w-1/9"}
         >
             <div>
                 {fmtDecimal2Digits(s_guiData.rech_row?.mwst)}
@@ -248,7 +251,7 @@ function RechFormComp(props: Props) {
 
     function renderGesamtPreis() {
         return <DkmRespFormCell label={"Gesamtpreis"} field={checkRechFormRowName("gesamtpreis")}
-            shouldRenderError={false} additionalClassName={"w-full lg:w-1/8"}
+                                shouldRenderError={false} additionalClassName={"w-full lg:w-1/9"}
         >
             <div>
                 {fmtDecimal2Digits(s_guiData.rech_row?.gesamtpreis)}
@@ -349,6 +352,18 @@ function RechFormComp(props: Props) {
         </tbody>
     }
 
+    function renderIstWeggeschickt() {
+        function handleChg(newv:MayBeBool) {
+            chgRechVal(rechrow=> rechrow.ist_weggeschickt = newv);
+        }
+
+        return <DkmRespFormCell label={"weggeschickt?"} field={checkRechFormRowName("ist_weggeschickt")}
+                                shouldRenderError={false} additionalClassName={"w-full lg:w-1/9"}
+        >
+            <NativeBoolInput value={s_guiData.rech_row?.ist_weggeschickt } onChange={handleChg}/>
+        </DkmRespFormCell>
+    }
+
     function renderPoss() {
         return <DkmRespTableMain>
             {/*<colgroup className="table-colgroup-responsive">*/}
@@ -386,7 +401,6 @@ function RechFormComp(props: Props) {
     }
 
 
-
     function calcDisabledSave(): boolean {
         const dataChanged = JSON.stringify(props.guiData) !=
             JSON.stringify(s_guiData);
@@ -420,6 +434,8 @@ function RechFormComp(props: Props) {
     if (!props.guiData) {
         return null;
     }
+
+
     return (
         <DkmRespForm addtionalClasses={"w-full dkm-form"}>
             {renderDlgRemovePosRow()}
@@ -430,6 +446,7 @@ function RechFormComp(props: Props) {
                 {renderZwischensumme()}
                 {renderMwst()}
                 {renderGesamtPreis()}
+                {renderIstWeggeschickt()}
             </DkmRespFormRow>
             <DkmRespFormRow>
                 {renderPoss()}

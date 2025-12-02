@@ -11,6 +11,7 @@ import DkmButton from "../dkm_comps/DkmButton.tsx";
 import {fmtGermanNum} from "@at.dkm/dkm-ts-lib-gen/lib/u";
 import {DkmFaktRouterConsts} from "../dkm_fakt_router.ts";
 import {useRowScroller} from "../dkm_comps/useRowScroller.tsx";
+import NativeBoolViewElem from "../dkm_comps/NativeBoolViewElem.tsx";
 
 interface Props {
     rows: Array<RechListViewModel>
@@ -74,6 +75,9 @@ function RechListCompTable(props: RechListCompTableProps) {
             <DkmRespTableCell label={"Gesamtbetrag"} tdClass={"text-right"}>
                 {fmtGermanNum(row.gesamt_betrag)}
             </DkmRespTableCell>
+            <DkmRespTableCell label={"weggeschickt"} tdClass={"text-center"}>
+                    <NativeBoolViewElem value={row.ist_weggeschickt} className={"h-6 w-6 ml-5"} hint={"weggeschickt?"}/>
+            </DkmRespTableCell>
         </DkmRespTableRow>
     }
 
@@ -88,6 +92,9 @@ function RechListCompTable(props: RechListCompTableProps) {
                 </DkmRespTableHeadTh>
                 <DkmRespTableHeadTh additionalClasses={"text-right"}>
                     Betrag
+                </DkmRespTableHeadTh>
+                <DkmRespTableHeadTh additionalClasses={"text-left"}>
+                    weggeschickt
                 </DkmRespTableHeadTh>
             </tr>
         </DkmRespTableHead>
@@ -129,7 +136,7 @@ function RechListSearch(props: RechListSearchProps) {
         )
     }
 
-    return <DkmRespForm>
+    return <DkmRespForm addtionalClasses={"gap-1"}>
         <DkmRespFormCell label={"Rechnungsnr"} field={"search_expr_rechnum"}
                          shouldRenderError={false}>
             <input type="text"
@@ -145,9 +152,9 @@ function RechListSearch(props: RechListSearchProps) {
                    onChange={handleFirmaInpChange}
             />
         </DkmRespFormCell>
-        <DkmButton onClick={() => props.onStartSearch(s_state)} defaultBtn={true}>
-            suchen
-        </DkmButton>
+            <DkmButton className={"h-10 mt-6"} onClick={() => props.onStartSearch(s_state)} defaultBtn={true}>
+                suchen
+            </DkmButton>
     </DkmRespForm>
 }
 

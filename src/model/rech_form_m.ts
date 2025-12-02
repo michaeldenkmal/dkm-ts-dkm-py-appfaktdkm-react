@@ -1,4 +1,11 @@
-import type { MayBeDate, MayBeDecimal, MayBeFloat, MayBeInteger, MayBeString} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m";
+import type {
+    MayBeBool,
+    MayBeDate,
+    MayBeDecimal,
+    MayBeFloat,
+    MayBeInteger,
+    MayBeString
+} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m";
 
 export interface RechFormRow {
     //     #vnr -> Pk
@@ -27,6 +34,7 @@ export interface RechFormRow {
     // gesamtpreis=create_2_digit_field(data_attr="gesamtpreis")
     gesamtpreis?:MayBeDecimal
     do_id?:MayBeInteger
+    ist_weggeschickt?:MayBeBool
 }
 
 export interface RechPosRow {

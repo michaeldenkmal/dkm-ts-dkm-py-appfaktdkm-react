@@ -12,21 +12,22 @@ import {DkmFaktRouterConsts} from "../dkm_fakt_router.ts";
 import {useRowScroller} from "../dkm_comps/useRowScroller.tsx";
 import {createEmptyHonListSearchData, type HonListSearchData, type HonListViewModel} from "../model/hon_list_m.ts";
 import {fmtGermanDate} from "@at.dkm/dkm-ts-lib-gen/lib/dateUtil";
+import NativeBoolViewElem from "../dkm_comps/NativeBoolViewElem.tsx";
 
 interface Props {
     rows: Array<HonListViewModel>
     searchData: HonListSearchData
     uq_searchKey: string
-    navigate:(path:string) => void
+    navigate: (path: string) => void
     onStartSearch: (data: HonListSearchData) => void
 }
 
-let lastClickHonNr="";
+let lastClickHonNr = "";
 
 interface HonListCompTableProps {
     rows: Array<HonListViewModel>
     uq_searchKey: string
-    navigate:(path:string) => void
+    navigate: (path: string) => void
 }
 
 //                 <th class="table-head-th">Rechnungsnr</th>
@@ -35,19 +36,19 @@ interface HonListCompTableProps {
 function HonListCompTable(props: HonListCompTableProps) {
     const rowScroller = useRowScroller();
 
-    useLayoutEffect(()=>{
+    useLayoutEffect(() => {
         if (lastClickHonNr) {
             rowScroller.scrollToRow(lastClickHonNr);
         }
-    },[props.rows]);
+    }, [props.rows]);
 
-    function handleOnLinkChange(honorarnr:string,url:string) {
-        lastClickHonNr=honorarnr;
+    function handleOnLinkChange(honorarnr: string, url: string) {
+        lastClickHonNr = honorarnr;
         props.navigate(url);
     }
 
-    function calcTrClass(row:HonListViewModel) {
-        const classes:string[] = ["hover:bg-blue-50"];
+    function calcTrClass(row: HonListViewModel) {
+        const classes: string[] = ["hover:bg-blue-50"];
         if (lastClickHonNr == row.honorarnr) {
             classes.push("bg-green-100");
         }
@@ -60,13 +61,13 @@ function HonListCompTable(props: HonListCompTableProps) {
 
     function renderTableRow(row: HonListViewModel) {
         return <DkmRespTableRow key={row.honorarnr} ref={rowScroller.registerRowRef(row.honorarnr)}
-            additionalClasses={calcTrClass(row) }
-            onMouseEnter={()=>handleTrMousEnter(row)}
+                                additionalClasses={calcTrClass(row)}
+                                onMouseEnter={() => handleTrMousEnter(row)}
         >
             <DkmRespTableCell label={"Honorarnr"} tdClass={"text-left"}>
                 <div className={"dkm-link"}
-                      onClick={()=> handleOnLinkChange(row.honorarnr,DkmFaktRouterConsts.getHonFormUrl(row.hon_float_nr,
-                          props.uq_searchKey))} >
+                     onClick={() => handleOnLinkChange(row.honorarnr, DkmFaktRouterConsts.getHonFormUrl(row.hon_float_nr,
+                         props.uq_searchKey))}>
                     {row.honorarnr}</div>
             </DkmRespTableCell>
             <DkmRespTableCell label={"verrechnet am"} tdClass={"text-left"}>
@@ -76,13 +77,10 @@ function HonListCompTable(props: HonListCompTableProps) {
                 {row.firma1}
             </DkmRespTableCell>
             <DkmRespTableCell label={"Betrag"} tdClass={"text-right"}>
-                {fmtGermanNum(row.gesamtpreis ||0 )}
+                {fmtGermanNum(row.gesamtpreis || 0)}
             </DkmRespTableCell>
-            <DkmRespTableCell label={"abgerechnet"} tdClass={"text-center"}>
-                {row.ist_verrechnet==true?"ja":"nein"}
-            </DkmRespTableCell>
-            <DkmRespTableCell label={"weggeschickt"} tdClass={"text-center"}>
-                {row.ist_weggeschickt==true?"ja":"nein"}
+            <DkmRespTableCell label={"weggeschickt"}>
+                <NativeBoolViewElem value={row.ist_weggeschickt} className={"h-6 w-6 ml-6"}/>
             </DkmRespTableCell>
         </DkmRespTableRow>
     }
@@ -102,10 +100,7 @@ function HonListCompTable(props: HonListCompTableProps) {
                 <DkmRespTableHeadTh additionalClasses={"text-right"}>
                     Betrag
                 </DkmRespTableHeadTh>
-                <DkmRespTableHeadTh additionalClasses={"text-right"}>
-                    abgerechnet
-                </DkmRespTableHeadTh>
-                <DkmRespTableHeadTh additionalClasses={"text-right"}>
+                <DkmRespTableHeadTh additionalClasses={"text-left"}>
                     weggeschickt
                 </DkmRespTableHeadTh>
             </tr>
@@ -161,9 +156,9 @@ function HonListSearch(props: HonListSearchProps) {
                    onChange={handleFirmaInpChange}
             />
         </DkmRespFormCell>
-            <DkmButton onClick={() => props.onStartSearch(s_state)} defaultBtn={true}>
-                suchen
-            </DkmButton>
+        <DkmButton className={"h-10 mt-6"} onClick={() => props.onStartSearch(s_state)} defaultBtn={true}>
+            suchen
+        </DkmButton>
     </DkmRespForm>
 }
 
@@ -171,7 +166,7 @@ function RechListComp(props: Props) {
 
     return <div>
         <HonListSearch onStartSearch={props.onStartSearch}
-                        searchData={props.searchData}
+                       searchData={props.searchData}
         />
         <HonListCompTable rows={props.rows} uq_searchKey={props.uq_searchKey}
                           navigate={props.navigate}/>
