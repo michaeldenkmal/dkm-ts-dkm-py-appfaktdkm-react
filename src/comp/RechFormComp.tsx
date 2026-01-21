@@ -3,7 +3,7 @@ import {
     type RechFormRow,
     type RechFormRowErrs,
     type RechGuiData,
-    type RechPosRow
+    type RechPosRow, RechPosRowConsts
 } from "../model/rech_form_m.ts";
 import {useEffect, useState} from "react";
 import DkmRespForm from "../dkm_comps/DkmRespForm.tsx";
@@ -83,6 +83,7 @@ function RechPossTr(props: RechPossTrProps) {
         <DkmRespTableCell label={"Bezeichnung"} valueClass={"flex-3"}>
             <NativeMemo value={props.row.bezeichnung}
                         additionalClassName={"w-full md:w-100"}
+                        maxlen={RechPosRowConsts.FL_Bezeichnung}
                         onChange={v => {
                             chg(false, vnew => {
                                 vnew.bezeichnung = v

@@ -60,6 +60,11 @@ export interface RechPosRow {
     // nr = models.AutoField(primary_key=True)
     nr?:MayBeInteger
 }
+
+export const RechPosRowConsts ={
+    FL_Bezeichnung:250
+}
+
 export interface RechGuiData{
     rech_row:RechFormRow|null
     pos_rows:Array<RechPosRow>
