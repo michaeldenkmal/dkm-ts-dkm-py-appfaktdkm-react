@@ -17,7 +17,7 @@ function HomeComp() {
                 <Link className={"underline"} to="/hon_abr">Honorar-Abrechnung</Link>
             </li>
             <li>
-                <Link className={"underline"} to={DkmFaktRouterConsts.getKuHonListUrl()}>Kunden - Honorare . Verwaltung</Link>
+                <Link className={"underline"} to={DkmFaktRouterConsts.getKuHonListUrl()}>Kunden-Honorare Verwaltung</Link>
             </li>
         </ul>
     </div>
