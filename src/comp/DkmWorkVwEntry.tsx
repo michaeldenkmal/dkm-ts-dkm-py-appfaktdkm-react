@@ -1,6 +1,6 @@
 import {type JSX} from "react";
 import {fmtGermanDate, fmtGermanShortTime} from "@at.dkm/dkm-ts-lib-gen/lib/dateUtil";
-import {fmtGermanNum} from "@at.dkm/dkm-ts-lib-gen/lib/u";
+import {fmtGermanNum, isNil} from "@at.dkm/dkm-ts-lib-gen/lib/u";
 import type {DatenabTestRow} from "../model/work_rep_m.ts";
 
 interface Props{
@@ -26,7 +26,7 @@ export default function DkmWorkVwEntry(props:Props): JSX.Element {
         if (n) {
             return fmtGermanNum(n)
         } else {
-            return ""
+            return `${n}`;
         }
     }
 
