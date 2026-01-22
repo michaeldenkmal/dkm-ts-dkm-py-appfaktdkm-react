@@ -1,8 +1,5 @@
 import {DkmUrlBuilder} from "@at.dkm/dkm-ts-lib-websrvc/lib/dkm_url_builder";
-import {execDjGet, execDjPost} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_ws";
-import type {WorkRepRow} from "../model/hon_form_m.ts";
-import type {Float} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m";
-import type {CalcHonToSettleRes} from "../model/hon_abr_m.ts";
+import {execDjGet} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_ws";
 
 const CONTEXT_NAME="dkmfakt/appdkmfakt";
 

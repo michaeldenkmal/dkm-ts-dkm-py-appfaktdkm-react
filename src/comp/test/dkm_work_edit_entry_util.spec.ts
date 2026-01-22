@@ -39,6 +39,7 @@ describe("dkmWorkEditEntry",()=> {
                 ...inp
             }
             exp.h_wart=null;
+
             const res = reCalc( {
                 workRow: inp
             })
@@ -110,5 +111,31 @@ describe("dkmWorkEditEntry",()=> {
             })
             expect (res).toEqual(exp)
         })
+        it("m2011 - 0.5 h und 0.5 h_wart sollen Gesamt=0 ergeben",()=> {
+            const inp = createTestRow();
+            inp.ZEITVON = VON;
+            const von = inp.ZEITVON || new Date();
+            const bis = new Date(von.getFullYear(), von.getMonth(), von.getDate(), von.getHours(), 30);
+            inp.ZEITBIS = bis;
+            // extraverrech sind eingegeben
+            inp.h_wart=0.5;
+            const exp = {
+                ...inp
+            }
+            // h = extraverrech
+            exp.STUNDEN= 1.5;
+            //honproh
+            exp.HONORAR = HONPROH;
+
+            // gesamt gesetzt(aber berechnet von extraver)
+            exp.GESAMTHONORAR = 0;
+            exp.STUNDEN = 0.5;
+            exp.h_wart = 0.5;
+            const res = reCalc( {
+                workRow: inp
+            })
+            expect (res).toEqual(exp)
+        })
+
     })
 })
