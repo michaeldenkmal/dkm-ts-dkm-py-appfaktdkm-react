@@ -44,7 +44,9 @@ export function reCalc(pars: RecalcParams): DatenabTestRow {
     //const extraverrech = ret.EXTRAVER || 0;
     let dVon: Date;
     let dBis: Date;
-    let h: number|undefined= undefined;
+    let h: number= 0;
+    ret.STUNDEN =0;
+    ret.GESAMTHONORAR = 0;
 
     // zuerst die Stunden anzahl berechnung
     if ((ret.DATUM) && (ret.ZEITVON) && (ret.ZEITBIS)) {
@@ -80,6 +82,8 @@ export function reCalc(pars: RecalcParams): DatenabTestRow {
         const honorarProH = ret.HONORAR;
         const gesamt = honorarProH * (h||0);
         ret.GESAMTHONORAR = gesamt;
+    } else {
+        ret.GESAMTHONORAR=0;
     }
 
     console.log(`in:${JSON.stringify(pars.workRow)}, out:${JSON.stringify(ret)}`);

@@ -39,6 +39,8 @@ describe("dkmWorkEditEntry",()=> {
                 ...inp
             }
             exp.h_wart=null;
+            exp.STUNDEN = 0;
+            exp.GESAMTHONORAR= 0;
 
             const res = reCalc( {
                 workRow: inp
