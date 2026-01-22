@@ -3,9 +3,14 @@ import type {KundenhonorarRow} from "../model/kuhon_form_m.ts";
 import type {MayBeString} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m";
 import equal from "fast-deep-equal/es6";
 import type {DatenabTestRow} from "../model/work_rep_m.ts";
+import {isNil} from "@at.dkm/dkm-ts-lib-gen/lib/u";
+import {dateAddHour} from "@at.dkm/dkm-ts-lib-gen/lib/dateUtil";
+
+
 
 type Action =
     | { type: "set_data_direct", newData:DatenabTestRow }
+    | { type:"von_onblur",row:DatenabTestRow }
     | { type: "change"; fnMutate:(row:DatenabTestRow)=>void };
 
 
@@ -18,6 +23,12 @@ const handlers: CaseMap<DatenabTestRow, Action> = {
     },
     change:(data,act )=> {
         act.fnMutate(data);
+    },
+    von_onblur:(_data, act)=>{
+        if ((act.row.ZEITVON) && (isNil(act.row.ZEITBIS))) {
+            const bisnew =dateAddHour(act.row.ZEITVON,0.5);
+            _data.ZEITBIS = bisnew;
+        }
     }
 }
 
@@ -25,6 +36,13 @@ export function creActWorkRepChange(fnMutate:(r:DatenabTestRow)=>void):Action {
     return {
         type:"change",
         fnMutate
+    }
+}
+
+export function creActBlurVon(row:DatenabTestRow):Action {
+    return {
+        type:"von_onblur",
+        row
     }
 }
 

@@ -5,7 +5,7 @@ import "./DkmWorkEditEntry.css"
 import NativeDateInput from "../dkm_comps/NativeDateInput.tsx";
 import {NativeTimeInput} from "../dkm_comps/NativeTimeInput.tsx";
 import {useImmerReducer} from "use-immer";
-import {creActWorkRepChange, workRepReducer} from "./work_edit_data_reducer.ts";
+import {creActBlurVon, creActWorkRepChange, workRepReducer} from "./work_edit_data_reducer.ts";
 import type {MayBeDate} from "@at.dkm/dkm-ts-lib-django/lib/dkm_django_m";
 import {NativeNumberInput} from "../dkm_comps/NativeNumberInput.tsx";
 import {NativeMemo} from "../dkm_comps/NativeMemo.tsx";
@@ -81,7 +81,11 @@ export default function DkmWorkEditEntry(props: Props) {
                              onChange={handleChange}
                              disabled={calcDisabled()}
                              dateOfDay={s_row.DATUM}
-                             onBlur={() => s_setBisTouched(true)}
+                             onBlur={() => {
+                                 s_setBisTouched(true);
+                                 dispatchRow(creActBlurVon(s_row));
+                             }
+                             }
             />
         </DkmRespFormCell>
     }
@@ -135,7 +139,8 @@ export default function DkmWorkEditEntry(props: Props) {
     // // h_Wart Wartungsstd
     function renderWartungsstd() {
         return <DkmRespFormCell label={"h für Wartung"} shouldRenderError={false} field={"h_wart"}>
-            <NativeNumberInput name={"h_wart"} additionalClassName={"anzahl"} value={s_row.h_wart} onChange={v => chgRow("h_wart", v)}/>
+            <NativeNumberInput name={"h_wart"} additionalClassName={"anzahl"} value={s_row.h_wart}
+                               onChange={v => chgRow("h_wart", v)}/>
         </DkmRespFormCell>
     }
 
