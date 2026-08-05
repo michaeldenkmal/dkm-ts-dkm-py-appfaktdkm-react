@@ -41,10 +41,10 @@
   dependencies:
     "@at.dkm/dkm-ts-lib-gen" "^1.0.3"
 
-"@at.dkm/dkm-ts-lib-django@^1.0.0":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@at.dkm/dkm-ts-lib-django/-/dkm-ts-lib-django-1.0.1.tgz#39b916e5565b8cb45c0c188ff01eade8bacbeb1e"
-  integrity sha512-ri/mtLQzeYBxEnqr6OTEljalIy0t5hTry5EuNi6Oe0Zmo/l9+lYjMdzxpRjy67zye5cHdYBGpUWap/m85FUS3g==
+"@at.dkm/dkm-ts-lib-django@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@at.dkm/dkm-ts-lib-django/-/dkm-ts-lib-django-1.0.4.tgz#916fd922afbc488900906d263e9c1b268bd9d953"
+  integrity sha512-LVxHmbAoxKzb29KhlU6X1L9iUT19SUp3295xlx5H2hDGMSuEX934UJH9FYhEpT/G5mpmSxTDYlGG4JloQfz5RQ==
   dependencies:
     "@at.dkm/dkm-ts-lib-gen" "^1.2.34"
     decimal.js "^10.6.0"

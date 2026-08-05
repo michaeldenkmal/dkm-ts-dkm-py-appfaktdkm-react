@@ -12,7 +12,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@at.dkm/dkm-ts-lib-django": "^1.0.0",
+    "@at.dkm/dkm-ts-lib-django": "^1.0.4",
     "@at.dkm/dkm-ts-lib-gen": "^1.2.36",
     "@at.dkm/dkm-ts-lib-websrvc": "^1.1.22",
     "@heroicons/react": "^2.2.0",

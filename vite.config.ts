@@ -6,6 +6,13 @@ import { resolve } from "node:path";
 
 export default defineConfig({
     base: "/dkmfaktfe/",
+    resolve: {
+        alias: {
+            // können auch mehr sein
+            "@at.dkm/dkm-ts-lib-django/lib":
+                resolve(__dirname, "node_modules/@at.dkm/dkm-ts-lib-django/src")
+        }
+    },
     plugins: [
         react(),
         tailwindcss(),
@@ -18,6 +25,12 @@ export default defineConfig({
     build: {
         outDir: resolve(__dirname, 'dist'),
         sourcemap: true,
+        // source mit ausliefern
+        rollupOptions: {
+            output: {
+                sourcemapExcludeSources: false
+            }
+        },
         emptyOutDir: true,
         //manifest: true,
         // rollupOptions: {
